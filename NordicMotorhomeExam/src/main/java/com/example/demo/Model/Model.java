@@ -1,9 +1,12 @@
 package com.example.demo.Model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
-
-
+@Entity
 public class Model {
+
+    @Id
     private int model_id;
     private String model_name;
     private String model_type;
