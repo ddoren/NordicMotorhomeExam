@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href="/createReservation">
+        <button class ="add">Add new Reservation</button>
+    </a>
+    <table>
+        <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>Customer</th>
+            <th>Motorhome ID</th>
+            <th>Date Created</th>
+            <th>Reserved Date</th>
+            <th>Invoice ID</th>
+            <th>Price</th>
+            <th>Options</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="reservation: ${reservations}">
+            <td th:text="${reservation.res_id}"/>
+            <td th:text="${reservation.res_customer}"/>
+            <td th:text="${reservation.res_motorhome}"/>
+            <td th:text="${reservation.date_made}"/>
+            <td th:text="${reservation.date_reservation}"/>
+            <td th:text="${reservation.invoice_id}"/>
+            <td th:text="${reservation.price}"/>
+            <td>
+                <a th:href="@{'/viewOneReservation/' + ${reservation.res_id}}">
+                    <button>View Info</button>
+                </a>
+                <a th:href="@{'/updateReservation/'+${reservation.res_id}}">
+                    <button>Update</button>
+                </a>
+                <a th:href="@{'/deleteReservation/' + ${reservation.res_id}}">
+                    <button>Delete</button>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</body>
+</html>

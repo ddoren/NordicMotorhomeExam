@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</table>
+<h1>Reservation Information</h1>
+<div>
+    <span>Reservation ID: </span><span th:text="${reservation.res_id}"/><br />
+    <span>Customer ID: </span><span th:text="${reservation.res_customer}"/><br />
+    <span>Motorhome ID: </span><span th:text="${reservation.res_motorhome}"/><br />
+    <span>Date: </span><span th:text="${reservation.date_made}"/><br />
+    <span>Reservation Date: </span><span th:text="${reservation.date_reservation}"/><br />
+    <span>Invoice ID: </span><span th:text="${reservation.invoice_id}"/><br />
+    <span>Price: </span><span th:text="${reservation.price}"/><span> dkk</span><br />
+</div>
+<br/>
+<br/>
+<a href="/reservations">
+    <button>Go Back</button>
+</a>
+
+</body>
+</html>
