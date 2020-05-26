@@ -17,9 +17,8 @@ public class ModelService {
         return null;
     }
 
-    public Model addModel(Model m){
+    public void addModel(Model m){
         modelRepo.addModel(m);
-        return null;
     }
 
     public Model findModelById(int id) {
@@ -27,13 +26,11 @@ public class ModelService {
         return null;
     }
 
-    public Boolean deleteModel(int id) {
+    public void deleteModel(int id) {
         modelRepo.deleteModel(id);
-        return null;
     }
 
-    public Model updateModel(int id, Model m) {
+    public void updateModel(int id, Model m) {
         modelRepo.updateModel(id, m);
-        return null;
     }
 }
