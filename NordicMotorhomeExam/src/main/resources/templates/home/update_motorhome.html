@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Motorhome</title>
+</head>
+<body>
+
+<form action="/update_motorhome" method="post">
+    <label>Motorhome ID: </label>
+    <input type="text" name="motor_id" th:value="${motorhome.motor_id}" readonly /><br />
+    <br/>
+    <label>Change Registration Number: </label>
+    <input type="text" name="reg_number" th:value="${motorhome.reg_number}" required>
+    <br/>
+    <br/>
+    <label>Change Motorhome Model: </label>
+    <input type="text" name="motor_model" th:value="${motorhome.motor_model}" required>
+    <br/>
+    <br/>
+    <label>Change Rent Status: </label>
+    <input type="text" name="status_rent" th:value="${motorhome.status_rent}" required  >
+    <br/>
+    <br/>
+    <label>Change Mileage: </label>
+    <input type="text" name="mileage" th:value="${motorhome.mileage}" required >
+    <br/>
+    <br/>
+    <label>Change Capacity: </label>
+    <input type="text" name="capacity" th:value="${motorhome.capacity}" required
+    <br/>
+    <br/>
+    <input type="submit" value="Save Changes">
+
+</form>
+<br />
+<a href="/">
+    <button>Cancel</button>
+</a>
+</body>
+</html>

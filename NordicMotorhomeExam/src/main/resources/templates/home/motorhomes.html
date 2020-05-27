@@ -27,20 +27,23 @@
         <td th:text="${motorhome.mileage}"/>
         <td th:text="${motorhome.capacity}"/>
         <td>
-            <a th:href="@{'/delete/'+${motorhome.motor_id}}">
+            <a th:href="@{'/delete_motorhome/'+${motorhome.motor_id}}">
                 <button class="btn-delete", id="btn-delete">Delete Motorhome</button>
             </a>
-        </td>
-
-        <td>
-
+            <a th:href="@{'/update_motorhome/'+${motorhome.motor_id}}">
+                <button>Update</button>
             </a>
         </td>
+        <td>
+
+        </td>
     </tr>
-
-
+    <br>
+    
     </tbody>
-
+    <a href="/add_motorhome">
+        <button class ="add">Add new Motorhome</button>
+    </a>
 </table>
 <div>
 
