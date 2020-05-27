@@ -1,8 +1,6 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Model.Motorhome;
 import com.example.demo.Model.Reservation;
-import com.example.demo.Service.MotorhomeService;
 import com.example.demo.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,7 +24,8 @@ public class HomeController {
     }
 
 
-    //RESEVATIONS
+
+
     @GetMapping("/reservations")
     public String indexReservation(Model model){
         List<Reservation> reservationsList = reservationService.fetchAll();
@@ -68,48 +67,4 @@ public class HomeController {
         reservationService.deleteReservation(res_id);
         return "redirect:/reservations";
     }
-
-    //MOTORHOME MODELS
-
-    //MOTORHOMES
-    @Autowired
-    MotorhomeService motorhomeService;
-    @GetMapping("/motorhomes")
-    public String motorhomes(Model model){
-        List<Motorhome> motorhomeList = motorhomeService.fetchAll();
-        model.addAttribute("motorhomes", motorhomeList);
-        return "home/motorhomes";
-    }
-
-    @GetMapping("/add_motorhome")
-    public String add_motorhome(){
-        return "home/add_motorhome";
-    }
-
-    @PostMapping ("/add_motorhome")
-    public String add_motorhome(@ModelAttribute Motorhome motorhome){
-        motorhomeService.addMotorhome(motorhome);
-        return "redirect:motorhomes";
-    }
-
-    @GetMapping("/delete_motorhome/{moto_id}")
-    public String delete_motorhome(@PathVariable("moto_id") int moto_id, Model model){
-        motorhomeService.deleteMotorhome(moto_id);
-        return "redirect:/";
-    }
-
-    @GetMapping("/update_motorhome/{moto_id}")
-    public String update(@PathVariable("moto_id") int moto_id, Model model) {
-        model.addAttribute("apartment", motorhomeService.findMotorhomeById(moto_id));
-        return "home/update_motorhome";
-    }
-
-    @PostMapping("/update_motorhome")
-    public String update_motorhome(@ModelAttribute Motorhome motorhome){
-        motorhomeService.updateMotorhome(motorhome.getMotor_id(), motorhome);
-        return "redirect:/";
-    }
-
-
-
 }

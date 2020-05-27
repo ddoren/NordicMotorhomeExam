@@ -13,19 +13,22 @@ public class MotorhomeService {
     MotorhomeRepo motorhomeRepo;
 
     public List<Motorhome> fetchAll() {
-        return motorhomeRepo.fetchAll();
+        motorhomeRepo.fetchAll();
+        return null;
     }
 
     public Motorhome addMotorhome(Motorhome m) {
-       return motorhomeRepo.addMotorhome(m);
+        motorhomeRepo.addMotorhome(m);
+        return null;
     }
 
     public Motorhome findMotorhomeById(int id) {
-        return motorhomeRepo.findMotorhomeById(id);
+        motorhomeRepo.findMotorhomeById(id);
+        return null;
     }
 
-    public void deleteMotorhome(int id) {
-        motorhomeRepo.deleteMotorhome(id);
+    public void deletePerson(int id) {
+        motorhomeRepo.deletePerson(id);
     }
 
     public void updateMotorhome(int id, Motorhome m) {
