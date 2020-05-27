@@ -33,7 +33,7 @@ public class MotorhomeRepo {
         return motorhome;
     }
 
-    public void deletePerson(int id) {
+    public void deleteMotorhome(int id) {
         String sql = "DELETE FROM motorhomes WHERE motor_id = ?";
         template.update(sql, id);
     }

@@ -13,8 +13,7 @@ public class ModelService {
     ModelRepo modelRepo;
 
     public List<Model> fetchAll(){
-        modelRepo.fetchAll();
-        return null;
+        return modelRepo.fetchAll();
     }
 
     public void addModel(Model m){
@@ -22,8 +21,7 @@ public class ModelService {
     }
 
     public Model findModelById(int id) {
-        modelRepo.findModelById(id);
-        return null;
+        return modelRepo.findModelById(id);
     }
 
     public void deleteModel(int id) {

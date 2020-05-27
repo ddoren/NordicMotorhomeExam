@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Motorhomes</title>
+</head>
+<body>
+<h1>Motorhome List</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Motorhome ID</th>
+        <th>Registration Number</th>
+        <th>Motorhome Model</th>
+        <th>Rent Status</th>
+        <th>Mileage</th>
+        <th>Capacity</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="motorhome: ${motorhomes}">
+        <td th:text="${motorhome.motor_id}"/>
+        <td th:text="${motorhome.reg_number}"/>
+        <td th:text="${motorhome.motor_model}"/>
+        <td th:text="${motorhome.status_rent}"/>
+        <td th:text="${motorhome.mileage}"/>
+        <td th:text="${motorhome.capacity}"/>
+        <td>
+            <a th:href="@{'/delete/'+${motorhome.motor_id}}">
+                <button class="btn-delete", id="btn-delete">Delete Motorhome</button>
+            </a>
+        </td>
+
+        <td>
+
+            </a>
+        </td>
+    </tr>
+
+
+    </tbody>
+
+</table>
+<div>
+
+    <a href="/">
+        <button class="btn_back">Go Back</button>
+    </a>
+</div>
+</body>
+</html>
