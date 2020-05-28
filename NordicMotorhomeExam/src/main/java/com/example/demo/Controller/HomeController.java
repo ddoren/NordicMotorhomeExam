@@ -1,7 +1,9 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.Carmodel;
 import com.example.demo.Model.Motorhome;
 import com.example.demo.Model.Reservation;
+import com.example.demo.Service.CarmodelService;
 import com.example.demo.Service.MotorhomeService;
 import com.example.demo.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,11 +72,12 @@ public class HomeController {
         return "redirect:/reservations";
     }
 
+    //MOTORHOMES
     @Autowired
     MotorhomeService motorhomeService;
     @GetMapping("/motorhomes")
     public String motorhomes(Model model){
-        List<Motorhome> motorhomeList = motorhomeService.fetchAll();
+        List <com.example.demo.Model.Motorhome> motorhomeList = motorhomeService.fetchAll();
         model.addAttribute("motorhomes", motorhomeList);
         return "home/motorhomes";
     }
@@ -104,4 +107,14 @@ public class HomeController {
         return "redirect:/";
     }
 
+    //MOTORHOME MODEL
+    @Autowired
+    CarmodelService carmodelService;
+    @GetMapping("/carmodels")
+    public String carmodels(Model model) {
+        List<Carmodel> carmodelList = carmodelService.fetchAll();
+        model.addAttribute("carmodels", carmodelList );
+        return "home/carmodels";
+
+    }
 }
