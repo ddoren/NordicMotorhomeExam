@@ -29,12 +29,12 @@
          <td th:text="${carmodel.layout}"/>
          <td th:text="${carmodel.seats}"/>
          <td>
-<!--            <a th:href="@{'/delete_motorhome/'+${motorhome.motor_id}}">-->
-<!--                <button class="btn-delete", id="btn-delete">Delete Motorhome</button>-->
-<!--            </a>-->
-<!--            <a th:href="@{'/update_motorhome/'+${motorhome.motor_id}}">-->
-<!--                <button>Update</button>-->
-<!--            </a>-->
+            <a th:href="@{'/delete_carmodel/'+${carmodel.model_id}}">
+                <button class="btn-delete", id="btn-delete">Delete Model</button>
+            </a>
+            <a th:href="@{'/update_carmodel/'+${carmodel.model_id}}">
+                <button>Update</button>
+            </a>
         </td>
         <td>
 
@@ -42,12 +42,13 @@
     </tr>
 
     </tbody>
-<!--    <a href="/add_motorhome">-->
-<!--        <button class ="add">Add new Motorhome</button>-->
-<!--    </a>-->
+
 </table>
 <div>
-
+    <a href="/add_carmodel">
+        <button class ="add">Add new Model</button>
+    </a>
+    <br>
     <a href="/">
         <button class="btn_back">Go Back</button>
     </a>

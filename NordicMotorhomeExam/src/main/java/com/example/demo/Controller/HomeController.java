@@ -164,8 +164,7 @@ public class HomeController {
     }
     @GetMapping("/delete_motorhome/{motor_id}")
     public String delete_motorhome(@PathVariable("motor_id") int motor_id, Model model){
-        motorhomeService.deleteMotorhome(motor_id
-        );
+        motorhomeService.deleteMotorhome(motor_id);
         return "redirect:/";
     }
     @GetMapping("/update_motorhome/{motor_id}")
@@ -187,7 +186,35 @@ public class HomeController {
         List<Carmodel> carmodelList = carmodelService.fetchAll();
         model.addAttribute("carmodels", carmodelList );
         return "home/carmodels";
+    }
 
+    @GetMapping("/add_carmodel")
+    public String add_carmodel(){
+        return "home/add_carmodel";
+    }
+
+    @PostMapping ("add_carmodel")
+    public String add_carmodel(@ModelAttribute Carmodel carmodel){
+        carmodelService.addModel(carmodel);
+        return "redirect:carmodels";
+    }
+
+    @GetMapping ("/delete_carmodel/{model_id}")
+    public String delete_carmodel(@PathVariable("model_id") int model_id, Model model) {
+        carmodelService.deleteModel(model_id);
+        return "redirect:/";
+    }
+
+    @GetMapping ("/update_carmodel/{model_id}")
+    public String updateCarmodel(@PathVariable("model_id") int model_id, Model model) {
+        model.addAttribute("carmodel", carmodelService.findModelById(model_id));
+        return "home/update_carmodel";
+    }
+
+    @PostMapping("/update_carmodel")
+    public String update_carmodel(@ModelAttribute Carmodel carmodel) {
+        carmodelService.updateModel(carmodel.getModel_id(), carmodel);
+        return "redirect:/";
     }
 }
 

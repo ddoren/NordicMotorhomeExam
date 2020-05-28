@@ -22,8 +22,8 @@ public class CarmodelRepo {
     }
 
     public void addModel(Carmodel m){
-        String sql = "INSERT INTO carmodel VALUES (DEFAULT, ?, ?, ?, ?, ?, ?);";
-        template.update(sql, m.getModel_name(), m.getModel_type(), m.getBrand(), m.getSize(), m.getLayout(), m.getSeats());
+        String sql = "INSERT INTO carmodel VALUES (?, ?, ?, ?, ?, ?, ?);";
+        template.update(sql,m.getModel_id(), m.getModel_name(), m.getModel_type(), m.getBrand(), m.getSize(), m.getLayout(), m.getSeats());
     }
 
     public Carmodel findModelById(int id) {
@@ -40,6 +40,6 @@ public class CarmodelRepo {
 
     public void updateModel(int id, Carmodel m) {
         String sql = "UPDATE carmodel SET model_name = ?, model_type = ?, brand = ?, size = ?, layout = ?, seats = ? WHERE model_id = ?";
-        template.update(sql, m.getModel_name(), m.getModel_type(), m.getBrand(), m.getSize(), m.getLayout(), m.getSize(), id);
+        template.update(sql, m.getModel_name(), m.getModel_type(), m.getBrand(), m.getSize(), m.getLayout(), m.getSeats(), id);
     }
 }
