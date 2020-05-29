@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<script type="text/javascript">
+    n =  new Date();
+    y = n.getFullYear();
+    m = n.getMonth() + 1;
+    d = n.getDate();
+    document.getElementById("today").innerHTML = y + "-" + m + "-" + d;
+</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <form action="/finishReservation?cus_id=${cus_id}&date_reservation_start=${date_reservation_start}&date_reservation_end=${date_reservation_end}&date_made=${date_made}&season=${season}&motor_id=${motor.id}" method="get">
+    <h1>Chosen Dates</h1>
+        <label>Customer ID:</label>
+        <input type="text" name="cus_id" th:value="${cus_id}" readonly /><br />
+
+        <label>Start Date:</label>
+        <input type="text" name="date_reservation_start" th:value="${date_reservation_start}" readonly /><br />
+        <label>End Date:</label>
+        <input type="text" name="date_reservation_end" th:value="${date_reservation_end}" readonly /><br />
+        <label>Today's Date:</label>
+        <input type="text" name="date_made" id="today" >
+
+        <label>Choose Motorhome:</label>
+        <input type="text" name="motor_id" required/><br />
+        <label for="season">Choose a season:</label>
+        <select id="season" name="season">
+            <option value="high_season">High Season</option>
+            <option value="normal_season">Normal Season</option>
+            <option value="low_season">Low Season</option>
+        </select>
+
+        <input type="submit">
+
+    </form>
+    <h1>Motorhome List</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Motorhome ID</th>
+            <th>Registration Number</th>
+            <th>Motorhome Model</th>
+            <th>Rent Status</th>
+            <th>Mileage</th>
+            <th>Capacity</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="motorhome: ${motorhomes}">
+            <td th:text="${motorhome.motor_id}"/>
+            <td th:text="${motorhome.reg_number}"/>
+            <td th:text="${motorhome.motor_model}"/>
+            <td th:text="${motorhome.status_rent}"/>
+            <td th:text="${motorhome.mileage}"/>
+            <td th:text="${motorhome.capacity}"/>
+            <td>
+        </tr>
+        </tbody>
+    </table>
+</head>
+<body>
+
+</body>
+</html>

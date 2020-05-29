@@ -1,6 +1,7 @@
 package com.example.demo.Repository;
 
 import com.example.demo.Model.Reservation;
+import com.example.demo.Model.Motorhome;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -22,9 +23,10 @@ public class ReservationRepo {
     }
 
     public void addReservation(Reservation r){
-        String sql = "INSERT INTO reservations VALUES (DEFAULT, ?, ?, ?, ?, DEFAULT, ?);";
+        String sql = "INSERT INTO reservations VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, DEFAULT, ?);";
         template.update(sql, r.getRes_customer(), r.getRes_motorhome(), r.getDate_made(),
-                        r.getDate_reservation(), r.getPrice());
+                        r.getDate_reservation_start(), r.getDate_reservation_end(), r.getSeason(),
+                        r.getPrice());
     }
 
     public Reservation findReservationById(int id) {
@@ -40,10 +42,23 @@ public class ReservationRepo {
     }
 
     public void updateReservation(int id, Reservation r) {
-        String sql = "UPDATE reservations SET res_customer = ?, res_motorhome = ?, " +
-                "date_reservation = ?, price = ? WHERE res_id = ?;";
-        template.update(sql, r.getRes_customer(), r.getRes_motorhome(), r.getDate_reservation(),
-                       r.getPrice(), id);
+        String sql = "UPDATE reservations SET res_motorhome = ?, " +
+                     "date_reservation_start = ?, date_reservation_end = ?, season = ?, " +
+                     "price = ? WHERE res_id = ?;";
+        template.update(sql, r.getRes_motorhome(), r.getDate_reservation_start(),
+                        r.getDate_reservation_end(), r.getSeason(), r.getPrice(), id);
     }
 
+    public List<Motorhome> availableMotorhome(String date_reservation_start, String  date_reservation_end){
+        String sql = "SELECT motor_id, reg_number, status_rent, mileage, capacity\n" +
+                "FROM motorhomes m\n" +
+                "LEFT JOIN reservations r\n" +
+                "ON m.motor_id = r.res_motorhome\n" +
+                "WHERE status_rent = \"Ready\" OR \n" +
+                "((? < date_reservation_start AND ? < date_reservation_start) OR \n" +
+                "(? > date_reservation_end AND ? > date_reservation_end));";
+        RowMapper<Motorhome> rowMapper = new BeanPropertyRowMapper<>(Motorhome.class);
+        return template.query(sql, rowMapper, date_reservation_start, date_reservation_end,
+                              date_reservation_start, date_reservation_end);
+    }
 }

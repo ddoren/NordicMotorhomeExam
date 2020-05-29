@@ -11,8 +11,22 @@ public class Motorhome {
     private String reg_number;
     private int motor_model;
     private String status_rent;
+    private int price_per_day;
     private int mileage;
     private int capacity;
+
+
+    public Motorhome(){}
+
+    public Motorhome(int motor_id, String reg_number, int motor_model, String status_rent, int price_per_day, int mileage, int capacity) {
+        this.motor_id = motor_id;
+        this.reg_number = reg_number;
+        this.motor_model = motor_model;
+        this.status_rent = status_rent;
+        this.price_per_day = price_per_day;
+        this.mileage = mileage;
+        this.capacity = capacity;
+    }
 
     public int getMotor_id() {
         return motor_id;
@@ -44,6 +58,14 @@ public class Motorhome {
 
     public void setStatus_rent(String status_rent) {
         this.status_rent = status_rent;
+    }
+
+    public int getPrice_per_day() {
+        return price_per_day;
+    }
+
+    public void setPrice_per_day(int price_per_day) {
+        this.price_per_day = price_per_day;
     }
 
     public int getMileage() {

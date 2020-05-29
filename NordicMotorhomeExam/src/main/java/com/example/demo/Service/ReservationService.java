@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.example.demo.Model.Motorhome;
 import com.example.demo.Model.Reservation;
 import com.example.demo.Repository.ReservationRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,8 @@ public class ReservationService {
 
     public void updateReservation(int id, Reservation r) {
         reservationRepo.updateReservation(id, r);
+    }
+    public List<Motorhome> availableMotorhomes(String date_reservation_start, String  date_reservation_end){
+        return reservationRepo.availableMotorhome(date_reservation_start, date_reservation_end);
     }
 }

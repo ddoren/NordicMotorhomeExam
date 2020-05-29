@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!--<script type="text/javascript">
+        n =  new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        document.getElementById("todayDate").innerHTML = y + "-" + m + "-" + d;
+    </script>-->
 </head>
 <body>
 </table>
@@ -17,19 +24,26 @@
     <input type="text" name="res_motorhome" required>
     <br/>
     <br/>
-    <label>Enter Today's Date: </label>
-    <input type="text" name="date_made" required  >
+    <label>Today's Date: </label>
+    <input type="date" id="todayDate" name="date_made" >
     <br/>
     <br/>
-    <label>Enter Reservation Date: </label>
-    <input type="text" name="date_reservation" required  >
+    <label>Enter Reservation Start Date: </label>
+    <input type="date" name="date_reservation_start" required  >
+    <br/>
+    <br/>
+    <label>Enter Reservation End Date: </label>
+    <input type="date" name="date_reservation_end" required  >
+    <br/>
+    <br/>
+    <label>Enter Season: </label>
+    <input type="text" name="season" required  >
     <br/>
     <br/>
     <label>Enter Price: </label>
     <input type="text" name="price" required >
     <br/>
     <br/>
-
     <input id = "add" type="submit" value="Add new Reservation">
 
 </form>

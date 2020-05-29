@@ -11,10 +11,13 @@
     <span>Reservation ID: </span><span th:text="${reservation.res_id}"/><br />
     <span>Customer ID: </span><span th:text="${reservation.res_customer}"/><br />
     <span>Motorhome ID: </span><span th:text="${reservation.res_motorhome}"/><br />
-    <span>Date: </span><span th:text="${reservation.date_made}"/><br />
-    <span>Reservation Date: </span><span th:text="${reservation.date_reservation}"/><br />
+    <span>Reservation Made: </span><span th:text="${reservation.date_made}"/><br />
+    <span>Reservation Start Date: </span><span th:text="${reservation.date_reservation_start}"/><br />
+    <span>Reservation End Date: </span><span th:text="${reservation.date_reservation_end}"/><br />
+    <span>Season: </span><span th:text="${reservation.season}"/><br />
     <span>Invoice ID: </span><span th:text="${reservation.invoice_id}"/><br />
     <span>Price: </span><span th:text="${reservation.price}"/><span> dkk</span><br />
+
 </div>
 <br/>
 <br/>

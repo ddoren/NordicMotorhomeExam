@@ -7,32 +7,36 @@ import javax.persistence.Id;
 public class Reservation {
 
     @Id
-    private String res_id;
+    private int res_id;
     private String res_customer;
     private String res_motorhome;
     private String date_made;
-    private String date_reservation;
+    private String date_reservation_start;
+    private String date_reservation_end;
+    private String season;
     private String invoice_id;
-    private String price;
+    private int price;
 
     public Reservation() {
     }
 
-    public Reservation(String res_id, String res_customer, String res_motorhome, String date_made, String date_reservation, String invoice_id, String price) {
+    public Reservation(int res_id, String res_customer, String res_motorhome, String date_made, String date_reservation_start, String date_reservation_end, String season, String invoice_id, int price) {
         this.res_id = res_id;
         this.res_customer = res_customer;
         this.res_motorhome = res_motorhome;
         this.date_made = date_made;
-        this.date_reservation = date_reservation;
+        this.date_reservation_start = date_reservation_start;
+        this.date_reservation_end = date_reservation_end;
+        this.season = season;
         this.invoice_id = invoice_id;
         this.price = price;
     }
 
-    public String getRes_id() {
+    public int getRes_id() {
         return res_id;
     }
 
-    public void setRes_id(String res_id) {
+    public void setRes_id(int res_id) {
         this.res_id = res_id;
     }
 
@@ -60,12 +64,28 @@ public class Reservation {
         this.date_made = date_made;
     }
 
-    public String getDate_reservation() {
-        return date_reservation;
+    public String getDate_reservation_start() {
+        return date_reservation_start;
     }
 
-    public void setDate_reservation(String date_reservation) {
-        this.date_reservation = date_reservation;
+    public void setDate_reservation_start(String date_reservation_start) {
+        this.date_reservation_start = date_reservation_start;
+    }
+
+    public String getDate_reservation_end() {
+        return date_reservation_end;
+    }
+
+    public void setDate_reservation_end(String date_reservation_end) {
+        this.date_reservation_end = date_reservation_end;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     public String getInvoice_id() {
@@ -76,11 +96,11 @@ public class Reservation {
         this.invoice_id = invoice_id;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

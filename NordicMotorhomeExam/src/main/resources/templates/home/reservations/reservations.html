@@ -5,17 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-    <a href="/createReservation">
-        <button class ="add">Add new Reservation</button>
-    </a>
+   <!-- <a href="/startReservation">
+        <button class>Add new Reservation</button>
+    </a>-->
+
+   <a href="/createCustomer">
+       <button class>Add new Reservation</button>
+   </a>
     <table>
         <thead>
         <tr>
             <th>Reservation ID</th>
             <th>Customer</th>
             <th>Motorhome ID</th>
-            <th>Date Created</th>
-            <th>Reserved Date</th>
+            <th>Call Date</th>
+            <th>Reservation Start Date</th>
+            <th>Reservation End Date</th>
+            <th>Season</th>
             <th>Invoice ID</th>
             <th>Price</th>
             <th>Options</th>
@@ -23,13 +29,14 @@
         </tr>
         </thead>
         <tbody>
-
         <tr th:each="reservation: ${reservations}">
             <td th:text="${reservation.res_id}"/>
             <td th:text="${reservation.res_customer}"/>
             <td th:text="${reservation.res_motorhome}"/>
             <td th:text="${reservation.date_made}"/>
-            <td th:text="${reservation.date_reservation}"/>
+            <td th:text="${reservation.date_reservation_start}"/>
+            <td th:text="${reservation.date_reservation_end}"/>
+            <td th:text="${reservation.season}"/>
             <td th:text="${reservation.invoice_id}"/>
             <td th:text="${reservation.price}"/>
             <td>
