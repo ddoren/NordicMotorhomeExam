@@ -2,24 +2,40 @@ package com.example.demo.Controller;
 
 import com.example.demo.Model.Customer;
 import com.example.demo.Model.Motorhome;
+import com.example.demo.Model.Employee;
+import com.example.demo.Model.Extras;
 import com.example.demo.Model.Carmodel;
 import com.example.demo.Model.Motorhome;
 import com.example.demo.Model.Reservation;
 import com.example.demo.Service.CustomerService;
 import com.example.demo.Service.MotorhomeService;
+import com.example.demo.Model.Validation;
+import com.example.demo.Service.ExtrasService;
+import com.example.demo.Service.LoginService;
 import com.example.demo.Service.CarmodelService;
 import com.example.demo.Service.MotorhomeService;
 import com.example.demo.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Controller
 public class HomeController {
 
+    @Autowired
+    ReservationService reservationService;
+    @Autowired
+    LoginService loginService;
+    @Autowired
+    ExtrasService extrasService;
 
 
     @Autowired
@@ -36,9 +52,6 @@ public class HomeController {
     }
 
     //RESERVATIONS
-    @Autowired
-    ReservationService reservationService;
-
     @GetMapping("/reservations")
     public String indexReservation(Model model) {
         List<Reservation> reservationsList = reservationService.fetchAll();
@@ -78,6 +91,7 @@ public class HomeController {
     @GetMapping("/deleteReservation/{res_id}")
     public String delete(@PathVariable("res_id") int res_id) {
         reservationService.deleteReservation(res_id);
+
         return "redirect:/reservations";
     }
 
@@ -97,9 +111,9 @@ public class HomeController {
         return "/home/reservations/chooseMotorhomeToReserve";
     }
 
-    @GetMapping("/createCustomer")
+    @GetMapping("reservations/createCustomer")
     public String createCustomer() {
-        return "/home/reservations/createCustomer";
+        return "home/createCustomer";
     }
 
     @PostMapping("/createCustomer")
@@ -143,6 +157,94 @@ public class HomeController {
 
         return "home/reservations/viewOneReservation";
     }
+
+    //LOGIN
+    @GetMapping("/login")
+    public String login()
+    {
+
+        return"home/login";
+    }
+    @PostMapping("/login/email")
+    public String loginCheck(@ModelAttribute Validation validation, Model model)
+    {
+      Employee demoemployee= loginService.findEmployee(validation.getEmail(),validation.getEmploy_pass());
+       model.addAttribute("employee", demoemployee);
+      if(demoemployee.getType_employee().equalsIgnoreCase("owner") ||demoemployee.getType_employee().equalsIgnoreCase("bookkeeper"))
+       {
+           return "redirect:/";
+       }
+      else if(demoemployee.getType_employee().equalsIgnoreCase("sales assistant"))
+      {
+          return  "redirect:/reservations";
+      }
+       else
+           {
+               return "redirect:/motorhomes";
+           }
+
+
+   }
+   //Exceptions
+    @ControllerAdvice
+    public class controllerAdvice
+    {
+    @ExceptionHandler({Exception.class, SQLException.class, DataAccessException.class})
+        public ModelAndView handleUserException(Exception ex)
+    {
+        ModelAndView modelAndView= new ModelAndView("home/error2",ex.getMessage(),ex.getCause());
+        return modelAndView ;
+    }
+    }
+    @GetMapping("/error2")
+    public String errorHandling()
+    {
+        return "home/error2";
+    }
+       //EXTRAS
+    @GetMapping("/extras")
+    public String extras(Model model)
+    {
+        List<Extras> extrasList = extrasService.fetchAll();
+        model.addAttribute("extras", extrasList);
+        return "home/extras";
+    }
+    @GetMapping("/viewOneExtra/{extra_id}")
+    public String viewOneExtra(@PathVariable("extra_id") int extra_id, Model model)
+    {
+    model.addAttribute("extra", extrasService.findExtraByID(extra_id));
+    return "home/viewOneExtra";
+    }
+    @GetMapping("/updateExtra/{extra_id}")
+    public String updateExtra(@PathVariable("extra_id") int extra_id,Model model )
+    {
+        model.addAttribute("extra",extrasService.findExtraByID(extra_id));
+       return "home/updateExtra";
+    }
+    @PostMapping("/updateExtra")
+    public String updateExtra(@ModelAttribute Extras extras)
+    {
+        extrasService.updateExtra( extras ,extras.getExtra_id());
+        return  "redirect:/extras";
+    }
+    @GetMapping("/deleteExtra/{extra_id}")
+    public String deleteExtra(@PathVariable("extra_id") int extra_id){
+        extrasService.deleteExtra(extra_id);
+
+        return "redirect:/extras";
+    }
+
+    @GetMapping("/createExtra")
+    public  String createExtra(){
+        return "home/createExtra";
+    }
+
+    @PostMapping("/createExtra")
+    public String createExtra(@ModelAttribute Extras extra){
+        extrasService.addExtras(extra);
+        return "redirect:/extras";
+    }
+
 
     //MOTORHOMES
 
@@ -216,5 +318,9 @@ public class HomeController {
         carmodelService.updateModel(carmodel.getModel_id(), carmodel);
         return "redirect:/";
     }
+
+
+
+
 }
 
