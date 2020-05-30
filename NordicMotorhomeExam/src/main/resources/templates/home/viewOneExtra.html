@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Extra information</h1>
+<div>
+    <span>Extra ID: </span><span th:text="${extra.extra_id}"/><br />
+    <span>Extra name: </span><span th:text="${extra.name_extra}"/><br />
+    <span>Price </span><span th:text="${extra.price}"/>
+    <span>Available: </span><span th:text="${extra.available}"/><br />
+    <span>Reservation ID: </span><span th:text="${extra.extra_reservation}"/><br />
+
+</div>
+<br/>
+<br/>
+<a href="/extras">
+    <button>Go Back</button>
+</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form action="/updateReservation" method="post">
+    <label>Reservation ID: </label>
+    <input type="text" name="res_id" th:value="${reservation.res_id}" readonly /><br />
+    <br/>
+    <label>Change Customer ID: </label>
+    <input type="text" name="res_customer" th:value="${reservation.res_customer}" required>
+    <br/>
+    <br/>
+    <label>Change Motorhome ID: </label>
+    <input type="text" name="res_motorhome" th:value="${reservation.res_motorhome}" required>
+    <br/>
+    <br/>
+    <label>Change Reservation Date: </label>
+    <input type="text" name="date_reservation" th:value="${reservation.date_reservation}" required  >
+    <br/>
+    <br/>
+    <label>Change Price: </label>
+    <input type="text" name="price" th:value="${reservation.price}" required >
+    <br/>
+    <br/>
+
+
+    <input type="submit" value="Save Changes">
+
+</form>
+<br />
+<a href="/">
+    <button>Cancel</button>
+</a>
+</body>
+</html>

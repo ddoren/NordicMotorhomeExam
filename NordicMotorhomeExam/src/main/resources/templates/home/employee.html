@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/createReservation">
+    <button class ="add">Add new Reservation</button>
+</a>
+<table>
+    <thead>
+    <tr>
+        <th>Reservation ID</th>
+        <th>Customer</th>
+        <th>Motorhome ID</th>
+        <th>Date Created</th>
+        <th>Reserved Date</th>
+        <th>Invoice ID</th>
+        <th>Price</th>
+        <th>Options</th>
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="reservation: ${reservations}">
+        <td th:text="${reservation.res_id}"/>
+        <td th:text="${reservation.res_customer}"/>
+        <td th:text="${reservation.res_motorhome}"/>
+
+    </tr>
+    </tbody>
+</body>
+</html>

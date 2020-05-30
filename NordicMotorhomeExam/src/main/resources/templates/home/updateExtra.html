@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Update Extra menu</h1>
+<form action="/updateExtra" method="post">
+    <label>Extra ID: </label>
+    <input type="number" name="extra_id" th:value="${extra.extra_id}" >
+    <br/>
+    <br/>
+    <label>Change extra name</label>
+    <input type="text" name="name_extra" th:value="${extra.name_extra}" required>
+    <br/>
+    <br/>
+    <label>Change price: </label>
+    <input type="text" name="price" th:value="${extra.price}" required>
+    <br/>
+    <br/>
+    <label>Change availability: </label>
+    <input type="text" name="available" th:value="${extra.available}" required  >
+    <br/>
+    <br/>
+    <label>Reservation ID:</label>
+    <input  type="text" name="extra_reservation" th:value="${extra.extra_reservation}"  maxlength="3" required>
+    <br/>
+    <br/>
+    <input type="submit" value="Save Changes">
+
+</form>
+</body>
+</html>
