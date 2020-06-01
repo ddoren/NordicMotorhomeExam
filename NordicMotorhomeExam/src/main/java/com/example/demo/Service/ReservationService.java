@@ -38,4 +38,20 @@ public class ReservationService {
     public List<Motorhome> availableMotorhomes(String date_reservation_start, String  date_reservation_end){
         return reservationRepo.availableMotorhome(date_reservation_start, date_reservation_end);
     }
+
+    public int getLastInsertedId(){
+        return reservationRepo.getLastInsertedId();
+    }
+
+    public int countReservationDays(String start_date, String end_date){
+        return reservationRepo.countReservationDays(start_date, end_date);
+    }
+
+    public void stopDisplayReservation(int reservation_id, int invoice_id){
+        reservationRepo.stopDisplayReservation(reservation_id, invoice_id);
+    }
+
+    public String getCurrentDate(){
+        return reservationRepo.getCurrentDate();
+    }
 }

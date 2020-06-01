@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Invoices</h1>
+<table>
+<thead>
+<tr>
+    <th>Invoice ID</th>
+    <th>Customer</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Motorhome</th>
+    <th>Reservation End Date</th>
+    <th>Reservation Start Date</th>
+    <th>Canceled</th>
+    <th>Total Price</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="invoice: ${invoices}">
+    <td th:text="${invoice.invoices_id}"/>
+    <td><span th:text="${invoice.first_name}"/> <span th:text="${invoice.last_name}"/></td>
+    <td th:text="${invoice.email}"/>
+    <td th:text="${invoice.phone_number}"/>
+    <td th:text="${invoice.model_name}"/>
+    <td th:text="${invoice.reg_number}"/>
+    <td th:text="${invoice.date_reservation_start}"/>
+    <td th:text="${invoice.date_reservation_end}"/>
+    <td th:text="${invoice.canceled}"/>
+    <td th:text="${invoice.total_price}"/>
+
+    <td>
+        <a th:href="@{'/viewOneInvoice/' + ${invoice.invoices_id}}">
+            <button>View Info</button>
+        </a>
+    </td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

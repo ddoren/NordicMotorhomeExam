@@ -21,17 +21,22 @@
         <label>End Date:</label>
         <input type="text" name="date_reservation_end" th:value="${date_reservation_end}" readonly /><br />
         <label>Today's Date:</label>
-        <input type="text" name="date_made" id="today" >
-
+        <input type="text" name="date_made" th:value="${current_date}" >
+        <br>
         <label>Choose Motorhome:</label>
         <input type="text" name="motor_id" required/><br />
-        <label for="season">Choose a season:</label>
-        <select id="season" name="season">
+        <label for="seasons">Choose a season:</label>
+        <!--<select id="season" name="season">
             <option value="high_season">High Season</option>
             <option value="normal_season">Normal Season</option>
             <option value="low_season">Low Season</option>
-        </select>
-
+        </select>-->
+        <input list="seasons" name="season" required>
+        <datalist id="seasons">
+            <option value="Normal Season">
+            <option value="High Season">
+            <option value="Low Season">
+        </datalist>
         <input type="submit">
 
     </form>

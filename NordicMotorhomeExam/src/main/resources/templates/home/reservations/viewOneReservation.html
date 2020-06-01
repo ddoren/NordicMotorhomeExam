@@ -10,14 +10,22 @@
 <div>
     <span>Reservation ID: </span><span th:text="${reservation.res_id}"/><br />
     <span>Customer ID: </span><span th:text="${reservation.res_customer}"/><br />
+    <span>Customer First Name: </span><span th:text="${reservation.first_name}"/><br />
+    <span>Customer Last Name: </span><span th:text="${reservation.last_name}"/><br />
+    <span>Customer Email: </span><span th:text="${reservation.email}"/><br />
+    <span>Customer Phone Number: </span><span th:text="${reservation.phone_number}"/><br />
     <span>Motorhome ID: </span><span th:text="${reservation.res_motorhome}"/><br />
+    <span>Motorhome Model: </span><span th:text="${reservation.model_name}"/><br />
+    <span>Motorhome Registration Number: </span><span th:text="${reservation.reg_number}"/><br />
+    <span>Price per Day for Motorhome: </span><span th:text="${reservation.price_per_day}"/><span> dkk</span><br />
     <span>Reservation Made: </span><span th:text="${reservation.date_made}"/><br />
     <span>Reservation Start Date: </span><span th:text="${reservation.date_reservation_start}"/><br />
     <span>Reservation End Date: </span><span th:text="${reservation.date_reservation_end}"/><br />
+    <span>Number of Days: </span><span th:text="${reservation.nr_days}"/><br />
+    <span>Additional Accessories: </span><span th:text="${reservation.extra_products}"/><br />
+    <span>Additional Price for Accessories: </span><span th:text="${reservation.price_for_extras}"/><br />
     <span>Season: </span><span th:text="${reservation.season}"/><br />
-    <span>Invoice ID: </span><span th:text="${reservation.invoice_id}"/><br />
     <span>Price: </span><span th:text="${reservation.price}"/><span> dkk</span><br />
-
 </div>
 <br/>
 <br/>

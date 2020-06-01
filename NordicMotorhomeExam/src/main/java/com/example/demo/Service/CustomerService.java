@@ -18,7 +18,7 @@ public class CustomerService {
         return customerRepo.findCustomerByLicense(driver_license);
     }
 
-    public int countReservationDays(String start_date, String end_date){
-        return customerRepo.countReservationDays(start_date, end_date);
+    public Customer findCustomerById(int id) {
+        return customerRepo.findCustomerById(id);
     }
 }

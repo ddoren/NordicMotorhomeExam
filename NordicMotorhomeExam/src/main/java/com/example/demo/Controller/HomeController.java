@@ -1,20 +1,9 @@
 package com.example.demo.Controller;
 
-import com.example.demo.Model.Customer;
+import com.example.demo.Model.*;
 import com.example.demo.Model.Motorhome;
-import com.example.demo.Model.Employee;
-import com.example.demo.Model.Extras;
-import com.example.demo.Model.Carmodel;
-import com.example.demo.Model.Motorhome;
-import com.example.demo.Model.Reservation;
-import com.example.demo.Service.CustomerService;
+import com.example.demo.Service.*;
 import com.example.demo.Service.MotorhomeService;
-import com.example.demo.Model.Validation;
-import com.example.demo.Service.ExtrasService;
-import com.example.demo.Service.LoginService;
-import com.example.demo.Service.CarmodelService;
-import com.example.demo.Service.MotorhomeService;
-import com.example.demo.Service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
@@ -36,13 +25,16 @@ public class HomeController {
     LoginService loginService;
     @Autowired
     ExtrasService extrasService;
-
+    @Autowired
+    InvoiceService invoiceService;
 
     @Autowired
     MotorhomeService motorhomeService;
 
     @Autowired
     CustomerService customerService;
+
+
 
 
 
@@ -103,11 +95,12 @@ public class HomeController {
     @RequestMapping(value = "/availableMotorhome", method = RequestMethod.GET)
     public String availableMotorhome(Model model, @RequestParam(value = "cus_id") int cus_id, @RequestParam(value = "date_reservation_start") String date_reservation_start, @RequestParam(value = "date_reservation_end") String date_reservation_end) {
         List<Motorhome> availableMotorhomes = reservationService.availableMotorhomes(date_reservation_start, date_reservation_end);
-
         model.addAttribute("motorhomes", availableMotorhomes);
         model.addAttribute("cus_id", cus_id);
         model.addAttribute("date_reservation_start", date_reservation_start);
         model.addAttribute("date_reservation_end", date_reservation_end);
+        String  current_date = reservationService.getCurrentDate();
+        model.addAttribute("current_date", current_date);
         return "/home/reservations/chooseMotorhomeToReserve";
     }
 
@@ -144,16 +137,18 @@ public class HomeController {
         reservation.setDate_reservation_start(date_reservation_start);
         reservation.setDate_reservation_end(date_reservation_end);
         reservation.setSeason(season);
-        int total_price = 1;
-        total_price = motorhome.getPrice_per_day() * customerService.countReservationDays(date_reservation_start, date_reservation_end);
-        if (season.equals("low_season")) {
-            total_price *= 0.5;
-        } else if (season.equals("high_season")) {
-            total_price *= 2;
+        int total_price = motorhome.getPrice_per_day() * reservationService.countReservationDays(date_reservation_start, date_reservation_end);
+        if (season.equals("Normal Season")) {
+            total_price *=  2;//1.3;
+        } else if (season.equals("High Season")) {
+            total_price *= 3;//1.6;
         }
         reservation.setPrice(total_price);
         reservationService.addReservation(reservation);
-        model.addAttribute("reservation", reservation);
+        int reservation_id = reservationService.getLastInsertedId();
+        Reservation reservationFromSQL = reservationService.findReservationById(reservation_id);
+        System.out.println(reservationFromSQL.toString());
+        model.addAttribute("reservation", reservationFromSQL);
 
         return "home/reservations/viewOneReservation";
     }
@@ -185,6 +180,7 @@ public class HomeController {
 
 
    }
+   /*
    //Exceptions
     @ControllerAdvice
     public class controllerAdvice
@@ -200,7 +196,7 @@ public class HomeController {
     public String errorHandling()
     {
         return "home/error2";
-    }
+    }*/
        //EXTRAS
     @GetMapping("/extras")
     public String extras(Model model)
@@ -251,7 +247,7 @@ public class HomeController {
 
     @GetMapping("/motorhomes")
     public String motorhomes(Model model){
-        List <com.example.demo.Model.Motorhome> motorhomeList = motorhomeService.fetchAll();
+        List <Motorhome> motorhomeList = motorhomeService.fetchAll();
         model.addAttribute("motorhomes", motorhomeList);
         return "home/motorhomes";
     }
@@ -320,7 +316,53 @@ public class HomeController {
     }
 
 
+    // Invoices
 
+    @GetMapping("/displayInvoices")
+    public String displayInvoices(Model model) {
+        List<Invoice> invoiceList = invoiceService.fetchAll();
+        model.addAttribute("invoices", invoiceList);
+        return "home/displayInvoices";
+    }
+
+    @GetMapping("/startInvoice")
+    public String startInvoice(Model model) {
+        List<Reservation> reservationList = reservationService.fetchAll();
+        model.addAttribute("reservations", reservationList);
+        return "home/startInvoice";
+    }
+
+
+    @GetMapping("/continueInvoice/{res_id}")
+    public String availableMotorhome(@PathVariable("res_id") int res_id, Model model) {
+        Reservation reservation = reservationService.findReservationById(res_id);
+        model.addAttribute("reservation", reservation);
+        Customer customer = customerService.findCustomerById(Integer.parseInt(reservation.getRes_customer()));
+        model.addAttribute("customer", customer);
+        return "home/continueInvoice";
+    }
+
+    @PostMapping("/createFinalInvoice")
+    public String createInvoice(@ModelAttribute Invoice invoice){
+        int total_price = 0;
+        if (invoice.getCanceled().equals("No")){
+            invoice.setService("Motorhome Rent");
+            total_price = invoice.getPrice_per_day() * invoice.getNr_days() + invoice.getPrice_for_extras() + invoice.getAddit_expenses();
+        }else {
+            invoice.setService("Reservation");
+
+        }
+        invoice.setTotal_price(total_price);
+        invoiceService.addInvoice(invoice);
+        int created_invoice = reservationService.getLastInsertedId();
+        reservationService.stopDisplayReservation(Integer.parseInt(invoice.getRes_id()), created_invoice);
+        return "redirect:/displayInvoices";
+
+    }
+
+
+
+    
 
 }
 

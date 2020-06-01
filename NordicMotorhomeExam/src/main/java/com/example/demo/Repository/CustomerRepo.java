@@ -18,9 +18,9 @@ public class CustomerRepo {
     JdbcTemplate template;
 
     public void addCustomer(Customer c) {
-        String sql = "INSERT INTO customers VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO customers VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, ?)";
         template.update(sql, c.getFirst_name(), c.getLast_name(), c.getAddress(), c.getCus_zips(),
-                        c.getDriver_license(), c.getEmail(), c.getPhone_number());
+                        c.getDriver_license(), c.getEmail(), c.getPhone_number(), c.getBank_card());
     }
 
     public Customer findCustomerByLicense(String driver_license) {
@@ -30,9 +30,11 @@ public class CustomerRepo {
         return customer;
     }
 
-    public int countReservationDays(String start_date, String end_date){
-        String sql = "SELECT DATEDIFF(?, ?) AS Result";
-        Integer Result = template.queryForObject(sql, Integer.class, end_date, start_date);
-        return Result;
+    public Customer findCustomerById(int id) {
+        String sql ="SELECT * FROM customers WHERE cus_id = ?;";
+        RowMapper<Customer> rowMapper = new BeanPropertyRowMapper<>(Customer.class);
+        Customer customer = template.queryForObject(sql, rowMapper, id);
+        return customer;
     }
+
 }

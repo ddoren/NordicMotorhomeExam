@@ -8,6 +8,7 @@ public class Motorhome {
 
     @Id
     private int motor_id;
+    private String model_name;
     private String reg_number;
     private int motor_model;
     private String status_rent;

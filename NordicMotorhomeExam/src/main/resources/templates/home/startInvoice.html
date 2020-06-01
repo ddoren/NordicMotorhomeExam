@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Creating an Invoice</h1>
+<h3>Choose a reservation to create an Invoice</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>Customer</th>
+            <th>Motorhome ID</th>
+            <th>Call Date</th>
+            <th>Reservation Start Date</th>
+            <th>Reservation End Date</th>
+            <th>Season</th>
+            <th>Invoice ID</th>
+            <th>Price</th>
+            <th>Options</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="reservation: ${reservations}">
+            <td th:text="${reservation.res_id}"/>
+            <td th:text="${reservation.res_customer}"/>
+            <td th:text="${reservation.res_motorhome}"/>
+            <td th:text="${reservation.date_made}"/>
+            <td th:text="${reservation.date_reservation_start}"/>
+            <td th:text="${reservation.date_reservation_end}"/>
+            <td th:text="${reservation.season}"/>
+            <td th:text="${reservation.invoice_id}"/>
+            <td th:text="${reservation.price}"/>
+            <td>
+                <a th:href="@{'/continueInvoice/' + ${reservation.res_id}}">
+                    <button>Choose Invoice</button>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>

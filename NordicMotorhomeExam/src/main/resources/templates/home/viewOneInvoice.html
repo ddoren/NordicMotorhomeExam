@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Invoice Information</h1>
+<div>
+    <span>Invoice ID: </span><span th:text="${invoice.invoices_id}"/><br />
+    <span>Service Provided: </span><span th:text="${invoice.service}"/><br />
+    <span>Reservation ID: </span><span th:text="${invoice.res_id}"/><br />
+    <span>Customer ID: </span><span th:text="${invoice.res_customer}"/><br />
+    <span>Customer First Name: </span><span th:text="${invoice.first_name}"/><br />
+    <span>Customer Last Name: </span><span th:text="${invoice.last_name}"/><br />
+    <span>Customer's Email: </span><span th:text="${invoice.email}"/><br />
+    <span>Customer's Phone Number: </span><span th:text="${invoice.phone_number}"/><br />
+    <span>Motorhome ID: </span><span th:text="${invoice.res_motorhome}"/><br />
+    <span>Motorhome Car Model: </span><span th:text="${invoice.model_name}"/><br />
+    <span>Motorhome Registration Number: </span><span th:text="${invoice.reg_number}"/><br />
+    <span>Motorhome Price per Day: </span><span th:text="${invoice.price_per_day}"/><br />
+    <span>Reservation Start Date: </span><span th:text="${invoice.date_reservation_start}"/><br />
+    <span>Reservation End Date: </span><span th:text="${invoice.date_reservation_end}"/><br />
+    <span>Total Number of Days Reserved: </span><span th:text="${invoice.nr_days}"/><br />
+    <span>Price for Extra Accessories: </span><span th:text="${invoice.price_for_extras}"/><br />
+    <span>Additional Expenses: </span><span th:text="${invoice.addit_exp_descript}"/><br />
+    <span>Price for Additional Expense: </span><span th:text="${invoice.addit_expenses}"/><br />
+    <span>Reservation Canceled: </span><span th:text="${invoice.canceled}"/><br />
+    <span>Total Price: </span><span th:text="${invoice.total_price}"/><br />
+
+</div>
+</body>
+</html>
