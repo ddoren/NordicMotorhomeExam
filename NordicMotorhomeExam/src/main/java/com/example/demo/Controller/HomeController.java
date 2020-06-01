@@ -359,6 +359,31 @@ public class HomeController {
         return "redirect:/displayInvoices";
 
     }
+    @GetMapping("/cancelReservation/{res_id}")
+    public String cancelReservation(@PathVariable("res_id") int res_id, Model model) {
+        Invoice invoice = new Invoice();
+        invoice.setCanceled("Yes");
+        model.addAttribute("invoice", invoice);
+        Reservation reservation = reservationService.findReservationById(res_id);
+        String  current_date = reservationService.getCurrentDate();
+        model.addAttribute("current_date", current_date);
+        String reservation_start_date = reservation.getDate_reservation_start();
+        int number_days = reservationService.countReservationDays(current_date,  reservation_start_date);
+        model.addAttribute("days_before_reservation", number_days);
+        int total_price = reservation.getPrice();
+        if (number_days <= 1){
+            total_price *= 0.95;
+        }else if (number_days <= 14 && number_days >= 2){
+            total_price *= 0.80;
+        }else if (number_days <= 49 && number_days >= 15){
+            total_price *= 0.50;
+        }
+        reservation.setPrice(total_price);
+        model.addAttribute("reservation", reservation);
+        Customer customer = customerService.findCustomerById(Integer.parseInt(reservation.getRes_customer()));
+        model.addAttribute("customer", customer);
+        return "home/reservations/cancelReservation";
+    }
 
 
 
