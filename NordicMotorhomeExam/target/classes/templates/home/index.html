@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 
     <meta charset="UTF-8">
@@ -9,6 +9,7 @@
     <style>
 </style>
 </head>
+<style></style>
 <body>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -41,5 +42,14 @@
     <button class ="add">Invoices</button>
 </a>
 </div>
+<form action="/login" method="post"  >
+    <label>Enter email</label>
+    <input type="text" id="email" name="email" required>
+    <br/><br/>
+    <label title="Password is maximum 10 characters">Enter password</label>
+    <input type="password" id="employ_pass" name="employ_pass" maxlength="10" required>
+    <br/><br/>
+    <input id="login" name="login" type="submit" value="Login">
+</form>
 </body>
 </html>

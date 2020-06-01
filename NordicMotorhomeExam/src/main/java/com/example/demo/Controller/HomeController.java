@@ -9,8 +9,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
@@ -30,7 +28,6 @@ public class HomeController {
 
     @Autowired
     MotorhomeService motorhomeService;
-
     @Autowired
     CustomerService customerService;
 
@@ -81,9 +78,9 @@ public class HomeController {
     }
 
     @GetMapping("/deleteReservation/{res_id}")
-    public String delete(@PathVariable("res_id") int res_id) {
+    public String delete(@PathVariable("res_id") int res_id)
+    {
         reservationService.deleteReservation(res_id);
-
         return "redirect:/reservations";
     }
 
@@ -154,20 +151,14 @@ public class HomeController {
     }
 
     //LOGIN
-    @GetMapping("/login")
-    public String login()
-    {
-
-        return"home/login";
-    }
-    @PostMapping("/login/email")
+    @PostMapping("/login")
     public String loginCheck(@ModelAttribute Validation validation, Model model)
     {
       Employee demoemployee= loginService.findEmployee(validation.getEmail(),validation.getEmploy_pass());
        model.addAttribute("employee", demoemployee);
       if(demoemployee.getType_employee().equalsIgnoreCase("owner") ||demoemployee.getType_employee().equalsIgnoreCase("bookkeeper"))
        {
-           return "redirect:/";
+           return "redirect:/owner";
        }
       else if(demoemployee.getType_employee().equalsIgnoreCase("sales assistant"))
       {
@@ -180,7 +171,12 @@ public class HomeController {
 
 
    }
-   /*
+       @GetMapping("/owner")
+       public String owner()
+       {
+           return "home/owner";
+       }
+
    //Exceptions
     @ControllerAdvice
     public class controllerAdvice
@@ -196,7 +192,7 @@ public class HomeController {
     public String errorHandling()
     {
         return "home/error2";
-    }*/
+    }
        //EXTRAS
     @GetMapping("/extras")
     public String extras(Model model)
@@ -275,7 +271,14 @@ public class HomeController {
         motorhomeService.updateMotorhome(motorhome.getMotor_id(), motorhome);
         return "redirect:/";
     }
-
+    //Employee Just to view
+    @GetMapping("/employee")
+    public String viewEmployee(Model model)
+    {
+        List<Employee> employeeList = loginService.findAllEmployee();
+        model.addAttribute("employees",employeeList);
+        return "home/employee";
+    }
     //MOTORHOME MODEL
     @Autowired
     CarmodelService carmodelService;

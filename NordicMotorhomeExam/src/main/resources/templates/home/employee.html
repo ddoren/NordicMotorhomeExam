@@ -19,26 +19,23 @@
 <table>
     <thead>
     <tr>
-        <th>Reservation ID</th>
-        <th>Customer</th>
-        <th>Motorhome ID</th>
-        <th>Date Created</th>
-        <th>Reserved Date</th>
-        <th>Invoice ID</th>
-        <th>Price</th>
-        <th>Options</th>
-
+        <th title="Employees system number">Employee ID: </th>
+        <th>Employee Name: </th>
+        <th>Employee Email: </th>
+        <th>Employee type: </th>
     </tr>
     </thead>
     <tbody>
-
-    <tr th:each="reservation: ${reservations}">
-        <td th:text="${reservation.res_id}"/>
-        <td th:text="${reservation.res_customer}"/>
-        <td th:text="${reservation.res_motorhome}"/>
-
+    <tr th:each="employee: ${employees}">
+        <td th:text="${employee.employee_id}"/>
+        <td th:text="${employee.first_name}"/>
+        <td th:text="${employee.email}"/>
+        <td th:text="${employee.type_employee}"/>
     </tr>
     </tbody>
-</div>
+</table>
+<a href="/owner">
+    <button>Return</button>
+</a>
 </body>
 </html>
