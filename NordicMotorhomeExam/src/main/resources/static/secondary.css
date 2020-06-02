@@ -1,0 +1,99 @@
+.btn-xl:hover{
+    background-color: lime;
+}
+.btn-sm:hover{background-color: red;}
+.add:hover{background-color: green;}
+.btn_back:hover{background-color: white;}
+.btn-xl {
+    padding-bottom: 20px;
+    padding-top: 20px;
+    font-size: 17px;
+    border-radius: 10px;
+    background-color: blue;
+    border: none;
+}
+.btn-sm{
+    font-size: 17px;
+    border-radius: 10px;
+    background-color: blue;
+    border: none;
+}
+.btn-sm:focus{
+    outline: none;
+}
+button{
+    text-decoration: none;
+}
+.btn_back{
+    border-radius: 20px;
+    background-color: white;
+}
+.btn_back:hover{
+    background-color: lightgrey;
+}
+.add{
+    border-radius: 20px;
+    background-color: white;
+}
+.add:hover{
+   background-color: yellowgreen;
+}
+body{
+    background-color: #9fcdff;
+}
+.btn-delete{
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-delete:hover{
+    background-color: red;
+}
+.update{
+    background-color: white;
+    border-radius: 20px;
+}
+.update:hover{
+    background-color: yellowgreen;
+}
+.btn-create{
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-create:hover{
+    background-color: yellowgreen;
+}
+.btn-cancel{
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-cancel:hover{
+    background-color: lightgrey;
+}
+.btn-view{
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-view:hover{
+    background-color: yellowgreen;
+}
+.btn-update{
+     background-color: white;
+     border-radius: 20px;
+ }
+.btn-update:hover{
+    background-color: yellowgreen;
+}
+.btn-choose{
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-choose:hover{
+    background-color: yellowgreen;
+}
+.btn-logout{
+    background-color: white;
+    border-radius: 20px;
+}
+.btn-logout:hover{
+    background-color: yellowgreen;
+}

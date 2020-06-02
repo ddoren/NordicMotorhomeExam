@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Models</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="/secondary.css">
     <style>
     </style>
 </head>
@@ -14,7 +14,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container">
 <h1>Motorhome Model List</h1>
-<table>
+    <div class="table-responsive">
+        <table class="table">
     <thead>
     <tr>
         <th>Model ID</th>
@@ -41,7 +42,7 @@
                 <button class="btn-delete", id="btn-delete">Delete Model</button>
             </a>
             <a th:href="@{'/update_carmodel/'+${carmodel.model_id}}">
-                <button>Update</button>
+                <button class="btn-update">Update</button>
             </a>
         </td>
         <td>
@@ -52,11 +53,13 @@
     </tbody>
 
 </table>
+    </div>
 <div>
     <a href="/add_carmodel">
         <button class ="add">Add new Model</button>
     </a>
-    <br>
+    <br/>
+    <br/>
     <a href="/owner">
         <button class="btn_back">Go Back</button>
     </a>

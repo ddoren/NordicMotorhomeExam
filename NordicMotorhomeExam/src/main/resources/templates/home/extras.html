@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="/secondary.css">
     <style>
     </style>
 </head>
@@ -15,10 +15,13 @@
 <div class = "container">
 <h1>Extras Menu</h1>
 <a href="/createExtra">
-    <button>Create extra</button>
+    <button class="btn-create">Create extra</button>
 </a>
-<table>
-    <thead>
+    <br/>
+    <br/>
+    <div class="table-responsive">
+        <table class="table">
+    <thead class ="thead-dark">
     <tr>
         <th>Extra ID</th>
         <th>Extra name</th>
@@ -38,18 +41,19 @@
         <td th:text="${extra.extra_reservation}"/>
         <td>
             <a th:href="@{'/viewOneExtra/' + ${extra.extra_id}}">
-                <button>View Info</button>
+                <button class="btn-view">View Info</button>
             </a>
             <a th:href="@{'/updateExtra/'+ ${extra.extra_id}}">
-                <button>Update</button>
+                <button class="update">Update</button>
             </a>
             <a th:href="@{'/deleteExtra/' + ${extra.extra_id}}">
-                <button>Delete</button>
+                <button class="btn-delete">Delete</button>
             </a>
         </td>
     </tr>
     </tbody>
 </table>
-<a href="/owner"><button>Go back</button></a>
+    </div>
+<a href="/owner"><button class="btn_back">Go back</button></a>
 </body>
 </html>

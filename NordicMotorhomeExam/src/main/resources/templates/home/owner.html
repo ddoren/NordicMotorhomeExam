@@ -5,45 +5,50 @@
     <meta charset="UTF-8">
     <title>Index</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" type="text/css" href="/main.css">
     <style>
-    </style>
+        </style>
 </head>
 <body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<div class ="container">
-<div id="tittle">
-    <h1>Nordic Motorhome Rental</h1>
-</div>
+    <div class ="container-fluid " style="flex-direction: row;flex-wrap: nowrap;display: flex;">
+        <div class ="row bg-primary">
+            <div class="col-lg-3 align-self-start d-flex p-4 ">
+                <span class = "h1" >Nordic Motorhome Rental</span>
+            </div>
+            <a class ="col-sm align-self-start d-flex p-4" href="/reservations">
+                <button class ="btn-xl">Bookings</button>
+            </a>
 
-<a href="/reservations">
-    <button class ="add">Reservations Menu</button>
-</a>
-<a href="/extras">
-    <button class="add">Extras Menu</button>
-</a>
-<a href="/motorhomes">
-    <button class ="add">Motorhomes Menu</button>
-</a>
-<a href="/carmodels">
-    <button class ="add">Models Menu</button>
-</a>
-<a href="/startInvoice">
-    <button class ="add">Create an Invoice</button>
-</a>
-<a href="/displayInvoices">
-    <button class ="add">Invoices</button>
-</a>
-<a href="/employee">
-    <button class="add">Employee Menu</button>
-</a>
-<a href="/logout">
-    <button>Log out</button>
-</a>
-    <p style="margin-left: 60%;border: black 1px solid ;width: 100% border-box ;padding: 3%" >Tooltips with help will pop-up when you hover over the text fields when creating</p>
-</div>
+
+            <a class ="col-sm align-self-start d-flex p-4" href="/extras">
+                <button class="btn-xl">Extras</button>
+            </a>
+
+            <a class= "col-lg align-self-start d-flex p-4" href="/motorhomes">
+                <button class ="btn-xl" >Motorhomes</button>
+            </a>
+
+            <a class ="col-lg align-self-start d-flex p-4" href="/carmodels">
+                <button class ="btn-xl">Models</button>
+            </a>
+            <a class ="col-lg align-self-start d-flex p-4 " href="/startInvoice">
+                <button class ="btn-sm">Create Invoice</button>
+            </a>
+
+            <a class ="col-lg align-self-start d-flex p-4 text-center" href="/displayInvoices">
+                <button class ="btn-xl">Invoices</button>
+            </a>
+            <a class ="col-lg align-self-start d-flex p-4 text-center" href="/employee">
+                <button class ="btn-xl">Employee</button>
+            </a>
+            <a class ="col-lg align-self-start d-flex p-4 text-center" href="/logout">
+                <button class ="btn-xl">Log out</button>
+            </a>
+        </div>
+    </div>
 </body>
 </html>

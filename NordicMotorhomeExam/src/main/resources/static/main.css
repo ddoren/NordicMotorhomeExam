@@ -1,0 +1,80 @@
+
+body{
+    background-color: #9fcdff;
+
+}
+.add{
+    border:none;
+    background-color:blue;
+    padding:0;
+    border-radius: 20px;
+}
+.btn-xl:hover {
+  background-color: lime;
+}
+.btn-sm:hover{
+    background-color: lime;
+}
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+form{
+    border: blue;
+    color: red;
+}
+#lab1{
+    margin-left: 20px;
+}
+#login{
+    margin-right: 10px;
+}
+.btn-xl {
+    padding-bottom: 15px;
+    padding-top: 15px;
+    font-size: 17px;
+    border-radius: 10px;
+    background-color: #9fcdff;
+    border: none;
+    text-decoration: none;
+}
+.btn-xl:hover{
+background-color: lime;
+}
+.top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+}
+.btn-sm{
+    font-size: 17px;
+    border-radius: 10px;
+    background-color:#9fcdff;
+    border: none;
+    text-decoration: none;
+}
+.btn-sm:hover{
+    background-color: lime;
+}
+h1{
+    color: black;
+}
+#mid{
+    position: center;
+}
+.bg-primary{
+    background-color: #8BCD50 !important;
+}
+.c{
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+}
+a:hover{
+    text-decoration: none;
+}
+a:active{
+    border-radius: 20px;
+}

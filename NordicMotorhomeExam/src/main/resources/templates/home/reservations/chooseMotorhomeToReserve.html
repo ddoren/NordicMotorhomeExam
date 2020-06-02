@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<meta charset="UTF-8">
+<title>Title</title>
 <script type="text/javascript">
     n =  new Date();
     y = n.getFullYear();
     m = n.getMonth() + 1;
     d = n.getDate();
     document.getElementById("today").innerHTML = y + "-" + m + "-" + d;
-</script>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="/secondary.css">
+        </head>
+        <body>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<div class = "container">
+    <br/>
     <form action="/finishReservation?cus_id=${cus_id}&date_reservation_start=${date_reservation_start}&date_reservation_end=${date_reservation_end}&date_made=${date_made}&season=${season}&motor_id=${motor.id}" method="get">
     <h1>Chosen Dates</h1>
         <label>Customer ID:</label>
@@ -41,8 +47,9 @@
 
     </form>
     <h1>Motorhome List</h1>
-    <table>
-        <thead>
+    <div class="table-responsive">
+        <table class="table">
+        <thead class ="thead-dark">
         <tr>
             <th>Motorhome ID</th>
             <th>Registration Number</th>
@@ -65,8 +72,7 @@
         </tr>
         </tbody>
     </table>
+    </div>
 </head>
-<body>
-
-</body>
+</div>
 </html>
