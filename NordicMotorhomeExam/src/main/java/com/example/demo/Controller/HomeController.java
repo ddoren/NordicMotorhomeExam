@@ -62,6 +62,13 @@ public class HomeController {
         }
         else return "redirect:/motorhomemaintanence/repairMenu";
     }
+    @GetMapping("/motorhomemaintanence/repairMenu")
+            public String repairMenu(Model model)
+    {
+        List<Motorhome> motorhomeList =motorhomeService.fetchAll();
+        model.addAttribute("motorhomes", motorhomeList);
+        return "home/motorhomemaintanence/repairMenu";
+    }
     //RESERVATIONS
     @GetMapping("/reservations")
     public String indexReservation(Model model) {
@@ -187,7 +194,7 @@ public class HomeController {
         }
        else
            {
-               return "redirect:/motorhomes";
+               return "redirect:/motorhomemaintanence/repairMenu";
            }
    }
     @GetMapping("/logout")
