@@ -14,6 +14,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * @author
+ *
+ */
 @Controller
 public class HomeController {
 
@@ -180,10 +184,18 @@ public class HomeController {
     }
 
     //LOGIN
+    /**
+     * @author Alexander
+     * The idea of this method is to redirect the user to his appropriate main menu
+     * @param validation is an object used to store the inputed email and password from the fields
+     * @return it returns a string view which redirects the user to the correct menu depending on their role in the motorhome
+     *
+     */
     @PostMapping("/login")
-    public String loginCheck(@ModelAttribute Validation validation, Model model) {
+    public String loginCheck(@ModelAttribute Validation validation) {
+        //with validation we find the correct employee and save it in an object of the employee type
+        //this employee is a global parameter so it can keep
         trackEmployee = loginService.findEmployee(validation.getEmail(), validation.getEmploy_pass());
-        model.addAttribute("employee", trackEmployee);
         if (trackEmployee.getType_employee().equalsIgnoreCase("owner")) {
             return "redirect:/owner";
         } else if (trackEmployee.getType_employee().equalsIgnoreCase("sales assistant")) {
@@ -197,6 +209,7 @@ public class HomeController {
                return "redirect:/motorhomemaintanence/repairMenu";
            }
    }
+   //Log out
     @GetMapping("/logout")
     public String logout()
     {
