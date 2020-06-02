@@ -17,6 +17,7 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    static Employee trackEmployee=new Employee();
     @Autowired
     ReservationService reservationService;
     @Autowired
@@ -39,7 +40,28 @@ public class HomeController {
     public String index() {
         return "home/index";
     }
-
+    //SPECIFIC users mapping
+    @GetMapping("/salesassistant/salesassistant")
+    public String salesAssistant()
+    {
+        return "home/salesassistant/salesassistant";
+    }
+    @GetMapping("/bookkeeper/bookkeeper")
+    public String booKeeper()
+    {return  "home/bookkeeper/bookkeeper";}
+    @GetMapping("/returnToMenu")
+            public String returnToMenu()
+    {
+        if(trackEmployee.getType_employee().equalsIgnoreCase("owner"))
+        {
+            return "redirect:/owner";
+        }
+        else if(trackEmployee.getType_employee().equalsIgnoreCase("sales assistant"))
+        {
+            return "redirect:/salesassistant/salesassistant";
+        }
+        else return "redirect:/motorhomemaintanence/repairMenu";
+    }
     //RESERVATIONS
     @GetMapping("/reservations")
     public String indexReservation(Model model) {
@@ -152,28 +174,30 @@ public class HomeController {
 
     //LOGIN
     @PostMapping("/login")
-    public String loginCheck(@ModelAttribute Validation validation, Model model)
-    {
-      Employee demoemployee= loginService.findEmployee(validation.getEmail(),validation.getEmploy_pass());
-       model.addAttribute("employee", demoemployee);
-      if(demoemployee.getType_employee().equalsIgnoreCase("owner") ||demoemployee.getType_employee().equalsIgnoreCase("bookkeeper"))
-       {
-           return "redirect:/owner";
-       }
-      else if(demoemployee.getType_employee().equalsIgnoreCase("sales assistant"))
-      {
-          return  "redirect:/reservations";
-      }
+    public String loginCheck(@ModelAttribute Validation validation, Model model) {
+        trackEmployee = loginService.findEmployee(validation.getEmail(), validation.getEmploy_pass());
+        model.addAttribute("employee", trackEmployee);
+        if (trackEmployee.getType_employee().equalsIgnoreCase("owner")) {
+            return "redirect:/owner";
+        } else if (trackEmployee.getType_employee().equalsIgnoreCase("sales assistant")) {
+            return "redirect:/salesassistant/salesassistant";
+        } else if (trackEmployee.getType_employee().equalsIgnoreCase("bookkeeper"))
+        {
+            return "redirect:/bookkeeper/bookkeeper";
+        }
        else
            {
                return "redirect:/motorhomes";
            }
-
-
    }
+    @GetMapping("/logout")
+    public String logout()
+    {
+        trackEmployee=null;
+        return "redirect:/";
+    }
        @GetMapping("/owner")
-       public String owner()
-       {
+       public String owner() {
            return "home/owner";
        }
 
@@ -245,7 +269,14 @@ public class HomeController {
     public String motorhomes(Model model){
         List <Motorhome> motorhomeList = motorhomeService.fetchAll();
         model.addAttribute("motorhomes", motorhomeList);
-        return "home/motorhomes";
+        if(trackEmployee.getType_employee().equalsIgnoreCase("owner")) {
+            return "home/motorhomes";
+        }
+        else if(trackEmployee.getType_employee().equalsIgnoreCase("mechanic"))
+        {
+            return "home/motorhomemaintanence/repairMenu";
+        }
+        else return "home/error2";
     }
     @GetMapping("/add_motorhome")
     public String add_motorhome(){
