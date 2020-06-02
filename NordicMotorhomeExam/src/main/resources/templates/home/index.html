@@ -9,17 +9,8 @@
     <style>
 </style>
 </head>
-<style></style>
 <body>
-<form action="/login" method="post"  >
-    <label>Enter email</label>
-    <input type="text" id="email" name="email" required>
-    <br/><br/>
-    <label title="Password is maximum 10 characters">Enter password</label>
-    <input type="password" id="employ_pass" name="employ_pass" maxlength="10" required>
-    <br/><br/>
-    <input id="login" name="login" type="submit" value="Login">
-</form>
+
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -27,29 +18,15 @@
 <div id="tittle">
     <h1>Nordic Motorhome Rental</h1>
 </div>
-<a href="/reservations">
-    <button class ="add">Reservations Menu</button>
-</a>
-<a href="/extras">
-    <button class="add">Extras Menu</button>
-</a>
-<a href="/login">
-    <button class="add">Login</button>
-</a>
-
-<a href="/motorhomes">
-    <button class ="add">Motorhomes Menu</button>
-</a>
-
-<a href="/carmodels">
-    <button class ="add">Models Menu</button>
-</a>
-<a href="/startInvoice">
-    <button class ="add">Create an Invoice</button>
-</a>
-<a href="/displayInvoices">
-    <button class ="add">Invoices</button>
-</a>
+    <form action="/login" method="post"  >
+        <label>Enter email</label>
+        <input type="text" id="email" name="email" required>
+        <br/><br/>
+        <label title="Password is maximum 10 characters">Enter password</label>
+        <input type="password" id="employ_pass" name="employ_pass" maxlength="10" required>
+        <br/><br/>
+        <input id="login" name="login" type="submit" value="Login">
+    </form>
 </div>
 </body>
 </html>
