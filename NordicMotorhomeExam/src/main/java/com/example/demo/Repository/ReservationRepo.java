@@ -69,13 +69,17 @@ public class ReservationRepo {
     }
 
     public List<Motorhome> availableMotorhome(String date_reservation_start, String  date_reservation_end){
-        String sql = "SELECT motor_id, reg_number, status_rent, mileage, capacity\n" +
+        String sql = "SELECT DISTINCT motor_id, model_name, reg_number, status_rent, mileage, capacity, price_per_day \n" +
                 "FROM motorhomes m\n" +
                 "LEFT JOIN reservations r\n" +
                 "ON m.motor_id = r.res_motorhome\n" +
+                "JOIN carmodel c\n" +
+                "ON c.model_id = m.motor_model\n" +
                 "WHERE status_rent = \"Ready\" OR \n" +
                 "((? < date_reservation_start AND ? < date_reservation_start) OR \n" +
-                "(? > date_reservation_end AND ? > date_reservation_end));";
+                "(? > date_reservation_end AND ? > date_reservation_end)) \n" +
+                "ORDER BY motor_id;";
+
         RowMapper<Motorhome> rowMapper = new BeanPropertyRowMapper<>(Motorhome.class);
         return template.query(sql, rowMapper, date_reservation_start, date_reservation_end,
                               date_reservation_start, date_reservation_end);
@@ -104,4 +108,13 @@ public class ReservationRepo {
         return cur_date;
     }
 
+    public void updatePrice(int price, int extra_id) {
+        String sql = "UPDATE reservations SET price = ? WHERE res_id = ?;";
+        template.update(sql, price, extra_id);
+    }
+
+    public void addExtraIntoReservation(int res_id, int extra_id){
+    String sql = "INSERT INTO extras_in_reservations VALUES (?, ?);";
+        template.update(sql,res_id, extra_id);
+    }
 }

@@ -1,47 +1,38 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<meta charset="UTF-8">
-<title>Title</title>
-<script type="text/javascript">
-    n =  new Date();
-    y = n.getFullYear();
-    m = n.getMonth() + 1;
-    d = n.getDate();
-    document.getElementById("today").innerHTML = y + "-" + m + "-" + d;
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="/secondary.css">
-        </head>
-        <body>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/secondary.css">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 <div class = "container">
     <br/>
-    <form action="/finishReservation?cus_id=${cus_id}&date_reservation_start=${date_reservation_start}&date_reservation_end=${date_reservation_end}&date_made=${date_made}&season=${season}&motor_id=${motor.id}" method="get">
+    <form action="/createReservation" method="post">
     <h1>Chosen Dates</h1>
         <label>Customer ID:</label>
-        <input type="text" name="cus_id" th:value="${cus_id}" readonly /><br />
+        <input type="text" name="res_customer" th:value="${cus_id}" readonly /><br />
 
         <label>Start Date:</label>
         <input type="text" name="date_reservation_start" th:value="${date_reservation_start}" readonly /><br />
         <label>End Date:</label>
         <input type="text" name="date_reservation_end" th:value="${date_reservation_end}" readonly /><br />
         <label>Today's Date:</label>
-        <input type="text" name="date_made" th:value="${current_date}" >
+        <input type="text" name="date_made" th:value="${current_date}" readonly>
         <br>
         <label>Choose Motorhome:</label>
-        <input type="text" name="motor_id" required/><br />
+        <input type="text" name="res_motorhome" required pattern="^[1-9][0-9]*"><br />
         <label for="seasons">Choose a season:</label>
-        <!--<select id="season" name="season">
-            <option value="high_season">High Season</option>
-            <option value="normal_season">Normal Season</option>
-            <option value="low_season">Low Season</option>
-        </select>-->
-        <input list="seasons" name="season" required>
+        <input list="seasons" name="season" required pattern="(Normal Season|High Season|Low Season)">
         <datalist id="seasons">
+            <option value="Low Season">
             <option value="Normal Season">
             <option value="High Season">
-            <option value="Low Season">
         </datalist>
         <input type="submit">
 
@@ -57,6 +48,7 @@
             <th>Rent Status</th>
             <th>Mileage</th>
             <th>Capacity</th>
+            <th>Price per Day</th>
 
         </tr>
         </thead>
@@ -64,10 +56,11 @@
         <tr th:each="motorhome: ${motorhomes}">
             <td th:text="${motorhome.motor_id}"/>
             <td th:text="${motorhome.reg_number}"/>
-            <td th:text="${motorhome.motor_model}"/>
+            <td th:text="${motorhome.model_name}"/>
             <td th:text="${motorhome.status_rent}"/>
             <td th:text="${motorhome.mileage}"/>
             <td th:text="${motorhome.capacity}"/>
+            <td th:text="${motorhome.price_per_day}"/>
             <td>
         </tr>
         </tbody>
@@ -75,4 +68,5 @@
     </div>
 </head>
 </div>
+</body>
 </html>

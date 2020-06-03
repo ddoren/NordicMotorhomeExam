@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Pick-up and Drop-off</h1>
+<form action="/finishReservation?pick_in_store=${pick_in_store}&distance=${distance}&extra_id=${extra_id}&res_id=${res_id}" method="get">
+<label>Reservation ID:</label>
+<input type="text" name="res_id" th:value="${res_id}" readonly><br />
+<span>Will the motorhome be picked up in store? </span>
+<label for="yes">Yes    </label>
+<input type="radio" id="yes" name="pick_in_store" value="Yes">
+<label for="no"> No </label>
+<input type="radio" id="no" name="pick_in_store" value="No">
+<label>Enter the distance from office to drop-off (in km): </label>
+<input type="text" name="distance" value="0" required /><br />
+<label>Choose Extra ID:</label>
+<input type="text" name="extra_id" required pattern="^[1-9][0-9]*"><br />
+<input type="submit">
+</form>
+<div class="table-responsive">
+    <table class="table">
+        <thead class ="thead-dark">
+        <tr>
+            <th>Extra ID</th>
+            <th>Extra name</th>
+            <th>Price</th>
+            <th>Availability</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="extra: ${extras}">
+            <td th:text="${extra.extra_id}"/>
+            <td th:text="${extra.name_extra}"/>
+            <td th:text="${extra.price}"/>
+            <td th:text="${extra.available}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

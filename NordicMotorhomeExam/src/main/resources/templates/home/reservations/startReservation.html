@@ -19,11 +19,11 @@
     <br/>
     <br/>
     <label>Enter Start Date: </label>
-    <input type="date" name="date_reservation_start" required>
+    <input type="date" name="date_reservation_start" required th:min="${current_date}">
     <br/>
     <br/>
     <label>Enter Reservation Date: </label>
-    <input type="date" name="date_reservation_end" required >
+    <input type="date" name="date_reservation_end" required th:min="${current_date}">
     <input id = "add" type="submit" value="Add new Reservation">
     <br/>
 </form>

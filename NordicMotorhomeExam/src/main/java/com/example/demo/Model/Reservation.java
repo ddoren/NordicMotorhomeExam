@@ -25,7 +25,10 @@ public class Reservation {
     private String extra_products;
     private String price_for_extras;
     private String season;
+    private int distance;
+    private int price_for_transfer;
     private int price;
+
 
     public Reservation() {
     }
@@ -208,6 +211,21 @@ public class Reservation {
         return res_id + " " + res_customer + " " +res_motorhome + " " +invoice_id;
     }
 
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public int getPrice_for_transfer() {
+        return price_for_transfer;
+    }
+
+    public void setPrice_for_transfer(int price_for_transfer) {
+        this.price_for_transfer = price_for_transfer;
+    }
 
     public int calculateCancelPrice(int reservation_price, int number_days) {
         int total_price = reservation_price;
@@ -219,5 +237,13 @@ public class Reservation {
             total_price *= 0.50;
         }
         return total_price;
+    }
+
+    public double addDropOff(String pick_in_store, int distance){
+        int result = this.price;
+        if (pick_in_store.equals("No")){
+            result +=  distance * 0.70;
+        }
+        return result;
     }
 }

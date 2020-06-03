@@ -21,6 +21,7 @@ public class Motorhome {
 
     public Motorhome(int motor_id, String model_name, String reg_number, int motor_model, String status_rent, int price_per_day, int mileage, int capacity) {
         this.motor_id = motor_id;
+        this.model_name = model_name;
         this.reg_number = reg_number;
         this.motor_model = motor_model;
         this.status_rent = status_rent;
@@ -29,20 +30,20 @@ public class Motorhome {
         this.capacity = capacity;
     }
 
-    public String getModel_name() {
-        return model_name;
-    }
-
-    public void setModel_name(String model_name) {
-        this.model_name = model_name;
-    }
-
     public int getMotor_id() {
         return motor_id;
     }
 
     public void setMotor_id(int motor_id) {
         this.motor_id = motor_id;
+    }
+
+    public String getModel_name() {
+        return model_name;
+    }
+
+    public void setModel_name(String model_name) {
+        this.model_name = model_name;
     }
 
     public String getReg_number() {

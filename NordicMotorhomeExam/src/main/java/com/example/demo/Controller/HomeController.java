@@ -119,6 +119,7 @@ public class HomeController {
 
     @GetMapping("/startReservation")
     public String startReservation() {
+
         return "/home/reservations/startReservation";
     }
 
@@ -143,9 +144,54 @@ public class HomeController {
     public String createCustomer(@ModelAttribute Customer customer, Model model) {
         customerService.addCustomer(customer);
         model.addAttribute("customer", customerService.findCustomerByLicense(customer.getDriver_license()));
+        String  current_date = reservationService.getCurrentDate();
+        model.addAttribute("current_date", current_date);
         return "/home/reservations/startReservation";
     }
 
+    @PostMapping("/createReservation")
+    public String createReservation(@ModelAttribute Reservation reservation) {
+        String res_motorhome = reservation.getRes_motorhome();
+        Motorhome motorhome = motorhomeService.findMotorhomeById(Integer.parseInt(res_motorhome));
+        int total_price = motorhome.getPrice_per_day() * reservationService.countReservationDays(reservation.getDate_reservation_start(),reservation.getDate_reservation_end());
+        if (reservation.getSeason().equals("Normal Season")) {
+            total_price *=  1.3;
+        } else if (reservation.getSeason().equals("High Season")) {
+            total_price *= 1.6;
+        }
+        reservation.setPrice(total_price);
+        reservationService.addReservation(reservation);
+        int reservation_id = reservationService.getLastInsertedId();
+        System.out.println(reservation.getPrice());
+        return "redirect:/finishReservation/" + reservation_id;
+    }
+
+    @GetMapping("/finishReservation/{res_id}")
+    public String finishReservation(Model model, @PathVariable("res_id") int res_id){
+        List<Extras> extras = extrasService.fetchAll();
+        model.addAttribute("res_id", res_id);
+        model.addAttribute("extras", extras);
+        return "home/reservations/finishReservation";
+    }
+    @RequestMapping(value = "/finishReservation", method = RequestMethod.GET)
+    public String finishReservation(Model model, @RequestParam(value = "pick_in_store") String pick_in_store, @RequestParam(value = "distance") int distance, @RequestParam(value = "extra_id") int extra_id, @RequestParam(value = "res_id") int res_id) {
+        Reservation reservation = reservationService.findReservationById(res_id);
+        System.out.println(pick_in_store);
+        System.out.println(distance);
+        System.out.println(extra_id);
+        System.out.println(res_id);
+        int reservation_price = (int) reservation.addDropOff(pick_in_store, distance);
+        Extras extra = extrasService.findExtraByID(extra_id);
+        int extra_price = extra.getPrice();
+        int total_price = reservation_price + extra_price;
+        System.out.println(total_price);
+        reservation.setPrice(total_price);
+        reservationService.updatePrice(total_price, res_id);
+        reservationService.addExtraIntoReservation(res_id, extra_id);
+        return "redirect:/viewOneReservation/" + res_id;
+
+    }
+/*
     @GetMapping("/finishReservation")
     public String finishReservation(Model model, @RequestParam(value = "cus_id") String cus_id, @RequestParam(value = "date_reservation_start") String date_reservation_start, @RequestParam(value = "date_reservation_end") String date_reservation_end,
                                     @RequestParam(value = "date_made") String date_made, @RequestParam(value = "season") String season, @RequestParam(value = "motor_id") String motor_id) {
@@ -169,9 +215,9 @@ public class HomeController {
         reservation.setSeason(season);
         int total_price = motorhome.getPrice_per_day() * reservationService.countReservationDays(date_reservation_start, date_reservation_end);
         if (season.equals("Normal Season")) {
-            total_price *=  2;//1.3;
+            total_price *=  1.3;
         } else if (season.equals("High Season")) {
-            total_price *= 3;//1.6;
+            total_price *= 1.6;
         }
         reservation.setPrice(total_price);
         reservationService.addReservation(reservation);
@@ -181,7 +227,7 @@ public class HomeController {
         model.addAttribute("reservation", reservationFromSQL);
 
         return "home/reservations/viewOneReservation";
-    }
+    }*/
 
     //LOGIN
     /**
@@ -222,7 +268,7 @@ public class HomeController {
        }
 
    //Exceptions
-    @ControllerAdvice
+    /*@ControllerAdvice
     public class controllerAdvice
     {
     @ExceptionHandler({Exception.class, SQLException.class, DataAccessException.class})
@@ -236,7 +282,7 @@ public class HomeController {
     public String errorHandling()
     {
         return "home/error2";
-    }
+    }*/
        //EXTRAS
     @GetMapping("/extras")
     public String extras(Model model)

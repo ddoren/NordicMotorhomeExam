@@ -54,4 +54,12 @@ public class ReservationService {
     public String getCurrentDate(){
         return reservationRepo.getCurrentDate();
     }
+
+    public void updatePrice(int price, int extra_id) {
+        reservationRepo.updatePrice(price, extra_id);
+    }
+
+    public void addExtraIntoReservation(int res_id, int extra_id){
+        reservationRepo.addExtraIntoReservation(res_id, extra_id);
+    }
 }

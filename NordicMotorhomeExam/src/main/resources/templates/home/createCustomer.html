@@ -17,11 +17,11 @@
     <br/>
 <form action="/createCustomer" method="post">
     <label>Enter First Name: </label>
-    <input type="text" name="first_name" required>
+    <input type="text" name="first_name" required pattern="\D*">
     <br/>
     <br/>
     <label>Enter Last Name: </label>
-    <input type="text" name="last_name" required>
+    <input type="text" name="last_name" required pattern="\D*">
     <br/>
     <br/>
     <label>Enter Address: </label>
@@ -29,23 +29,23 @@
     <br/>
     <br/>
     <label>Enter Zip: </label>
-    <input type="text" name="cus_zips" >
+    <input type="text" name="cus_zips" minlength="4" maxlength="4" pattern="\d*">
     <br/>
     <br/>
     <label>Enter Driver License: </label>
-    <input type="text" name="driver_license" required >
+    <input type="text" name="driver_license" required minlength="8" maxlength="8" pattern="\d*">
     <br/>
     <br/>
     <label>Enter Email: </label>
-    <input type="text" name="email" required  >
+    <input type="email" name="email" required  >
     <br/>
     <br/>
     <label>Enter Phone Number: </label>
-    <input type="text" name="phone_number" required >
+    <input type="text" name="phone_number" required minlength="8" maxlength="8" pattern="\d*">
     <br/>
     <br/>
     <label>Enter Bank Card Number: </label>
-    <input type="text" name="bank_card" required >
+    <input type="text" name="bank_card" required minlength="16" maxlength="16" pattern="\d*">
     <br/>
     <br/>
     <input type="submit" value="Add new Customer">
