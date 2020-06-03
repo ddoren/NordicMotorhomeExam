@@ -15,9 +15,9 @@ public class MotorhomeRepo {
     JdbcTemplate template;
 
     public List<Motorhome> fetchAll() {
-        String sql = "SELECT *\n" +
-                "FROM motorhomes m\n" +
-                "LEFT JOIN carmodel c\n" +
+        String sql = "SELECT motor_id, model_name, reg_number, motor_model, status_rent, price_per_day, mileage, capacity\n" +
+                "FROM motorhomes m\t\t\t\n" +
+                "JOIN carmodel c\n" +
                 "ON m.motor_model = c.model_id";
         RowMapper<Motorhome> rowMapper = new BeanPropertyRowMapper<>(Motorhome.class);
         return template.query(sql, rowMapper);
@@ -42,7 +42,7 @@ public class MotorhomeRepo {
     }
 
     public void updateMotorhome(int id, Motorhome m) {
-        String sql = "UPDATE motorhomes SET reg_number = ?, motor_model = ?, status_rent = ?, mileage = ?, capacity = ? WHERE motor_id = ?";
-        template.update(sql, m.getReg_number(), m.getMotor_model(), m.getStatus_rent(), m.getMileage(), m.getCapacity(), id);
+        String sql = "UPDATE motorhomes SET reg_number = ?, motor_model = ?, status_rent = ?, mileage = ?, capacity = ?, price_per_day = ? WHERE motor_id = ?";
+        template.update(sql, m.getReg_number(), m.getMotor_model(), m.getStatus_rent(), m.getMileage(), m.getCapacity(), m.getPrice_per_day(), id);
     }
 }
