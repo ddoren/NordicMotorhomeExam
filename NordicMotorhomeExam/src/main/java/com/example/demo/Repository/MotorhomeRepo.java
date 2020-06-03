@@ -15,7 +15,10 @@ public class MotorhomeRepo {
     JdbcTemplate template;
 
     public List<Motorhome> fetchAll() {
-        String sql = "SELECT * FROM motorhomes";
+        String sql = "SELECT *\n" +
+                "FROM motorhomes m\n" +
+                "LEFT JOIN carmodel c\n" +
+                "ON m.motor_model = c.model_id";
         RowMapper<Motorhome> rowMapper = new BeanPropertyRowMapper<>(Motorhome.class);
         return template.query(sql, rowMapper);
     }
