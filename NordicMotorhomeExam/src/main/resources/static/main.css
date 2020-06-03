@@ -1,6 +1,6 @@
 
 body{
-    background-color: #9fcdff;
+    background-color: #77d8d8;
 
 }
 .add{
@@ -15,15 +15,14 @@ body{
 .btn-sm:hover{
     background-color: lime;
 }
-.container {
+.container{
     position: relative;
     text-align: center;
-    color: white;
-}
 
+}
 form{
     border: blue;
-    color: red;
+    color: black;
 }
 #lab1{
     margin-left: 20px;
@@ -36,12 +35,12 @@ form{
     padding-top: 15px;
     font-size: 17px;
     border-radius: 10px;
-    background-color: #9fcdff;
+    background-color: #77d8d8 ;
     border: none;
     text-decoration: none;
 }
 .btn-xl:hover{
-background-color: lime;
+background-color: aqua ;
 }
 .top-left {
     position: absolute;
@@ -51,12 +50,12 @@ background-color: lime;
 .btn-sm{
     font-size: 17px;
     border-radius: 10px;
-    background-color:#9fcdff;
+    background-color:#77d8d8;
     border: none;
     text-decoration: none;
 }
 .btn-sm:hover{
-    background-color: lime;
+    background-color: aqua;
 }
 h1{
     color: black;
@@ -65,7 +64,7 @@ h1{
     position: center;
 }
 .bg-primary{
-    background-color: #8BCD50 !important;
+    background-color: #eff3c6 !important;
 }
 .c{
     flex-direction: row;

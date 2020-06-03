@@ -11,101 +11,94 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<div class = "container">
-<!--invoices_id, res_id, res_customer, res_motorhome, service, first_name, last_name, email, phone_number, model_name, reg_number, price_per_day, date_reservation_start, date_reservation_end, nr_days, price_for_extras, addit_expenses, addit_exp_descript, canceled, total_price -->
-<form action="/createFinalInvoice" method="post">
-    <label>Canceled: </label>
-    <input type="text" name="canceled" th:value="Yes" readonly /><br />
+<div class = "container-fluid" style="text-align: center">
+    <h1 style="background-color: #eff3c6;text-align: center">Cancel reservation</h1>
+
+    <!--invoices_id, res_id, res_customer, res_motorhome, service, first_name, last_name, email, phone_number, model_name, reg_number, price_per_day, date_reservation_start, date_reservation_end, nr_days, price_for_extras, addit_expenses, addit_exp_descript, canceled, total_price -->
+    <div class ="row">
+        <div class="col-lg">
+    <form action="/createFinalInvoice" method="post">
+        <label>Reservation ID: </label>
+        <input type="text" name="res_id" th:value="${reservation.res_id}" readonly />
+        <br />
     <br/>
-    <br/>
-    <label>Reservation ID: </label>
-    <input type="text" name="res_id" th:value="${reservation.res_id}" readonly /><br />
-    <br/>
+        <label>Motorhome ID: </label>
+        <input type="text" name="res_motorhome" th:value="${reservation.res_motorhome}" required>
+        <br />
     <br/>
     <label>Customer ID: </label>
     <input type="text" name="res_customer" th:value="${customer.cus_id}" readonly >
     <br/>
     <br/>
-    <label>Customer First Name: </label>
-    <input type="text" name="name" th:value="${customer.first_name}" readonly  >
-    <br/>
-    <br/>
-    <label>Customer Last Name: </label>
-    <input type="text" name="name" th:value="${customer.last_name}" readonly  >
-    <br/>
-    <br/>
-    <label>Customer's Bank Card Number: </label>
-    <input type="text" name="bank_card" th:value="${customer.bank_card}" readonly >
-    <!--     private String address;
-     private String cus_zips;
-     private String driver_license;
-     private String phone_number;
-     private String bank_card;
+        </div>
+        <div class="col-lg">
+            <label>Reservation Start Date: </label>
+            <input type="text" name="date_reservation_start" th:value="${reservation.date_reservation_start}" readonly  >
 
-     private int invoices_id;
-     private String res_id;
-     private String res_customer;
-     private String res_motorhome;
-     private String service;
-     private String first_name;
-     private String last_name;
-     private String email;
-     private String phone_number;
-     private String model_name;
-     private String reg_number;
-     private String price_per_day;
-     private String date_reservation_start;
-     private String date_reservation_end;
-     private String nr_days;
-     private String price_for_extras;
-     private String addit_expenses;
-     private String  addit_exp_descript;
-     private String canceled;
-     private int total_price;
+    <br/>
+    <br/>
+            <label>Motorhome Model: </label>
+            <input type="text" name="model_name" th:value="${reservation.model_name}" required>
+            <br/>
+            <br/>
+            <label>Customer First Name: </label>
+            <input type="text" name="name" th:value="${customer.first_name}" readonly  >
+        </div>
+        <div class="col-lg">
+            <label>Reservation End Date: </label>
+            <input type="text" name="date_reservation_end" th:value="${reservation.date_reservation_end}" readonly  >
+            <br/>
+            <br/>
+            <label>Motorhome Reg-Num: </label>
+            <input type="text" name="reg_number" th:value="${reservation.reg_number}" required>
+    <br/>
+    <br/>
+            <label>Customer Last Name: </label>
+            <input type="text" name="name" th:value="${customer.last_name}" readonly  >
 
-         invoices_id, invoice_reservation, service, addit_expenses, addit_exp_descript, canceled, total_price -->
-    <label>Motorhome ID: </label>
-    <input type="text" name="res_motorhome" th:value="${reservation.res_motorhome}" required>
-    <br/>
-    <br/>
-    <label>Motorhome Model: </label>
-    <input type="text" name="model_name" th:value="${reservation.model_name}" required>
-    <br/>
-    <br/>
-    <label>Motorhome Registration Number: </label>
-    <input type="text" name="reg_number" th:value="${reservation.reg_number}" required>
-    <br/>
-    <br/>
-    <label>Motorhome's Price per Day: </label>
+        </div>
+        <div class="col-lg">
+            <label>Current Date: </label>
+            <input type="text" name="current_date" th:value="${current_date}" required  >
+            <br/>
+            <br/>
+            <label>Motorhome's Price per Day: </label>
     <input type="text" name="price_per_day" th:value="${reservation.price_per_day}" required>
+
+
     <br/>
     <br/>
-    <label>Current Date: </label>
-    <input type="text" name="current_date" th:value="${current_date}" required  >
+            <label>Customer's Bank Card Number: </label>
+            <input type="text" name="bank_card" th:value="${customer.bank_card}" readonly >
     <br/>
     <br/>
-    <label>Reservation Start Date: </label>
-    <input type="text" name="date_reservation_start" th:value="${reservation.date_reservation_start}" readonly  >
+        </div>
+        <div class="col-lg">
+            <label>Canceled: </label>
+            <input type="text" name="canceled" th:value="Yes" readonly />
     <br/>
     <br/>
-    <label>Reservation End Date: </label>
-    <input type="text" name="date_reservation_end" th:value="${reservation.date_reservation_end}" readonly  >
+            <label for="addit_expenses">Choose additional expenses</label>
+            <input list="addit_expenses" name="addit_exp_descript" required>
+            <datalist id="addit_expenses">
+                <option value="None">
+                <option value="Fuel">
+                <option value="Repair">
+                <option value="Others">
+            </datalist>
     <br/>
     <br/>
-    <label>Number of days left prior to Reservation</label>
-    <input type="text" name="days_before_reservation" th:value="${days_before_reservation}" readonly>
     <label>Price: </label>
     <input type="text" name="price" th:value="${reservation.price}" required >
     <br/>
     <br/>
-    <label for="addit_expenses">Choose additional expenses</label>
-    <input list="addit_expenses" name="addit_exp_descript" required>
-    <datalist id="addit_expenses">
-        <option value="None">
-        <option value="Fuel">
-        <option value="Repair">
-        <option value="Others">
-    </datalist>
+        </div>
+            <div class="col-lg">
+                <label>Days left prior booking</label>
+                <input type="text" name="days_before_reservation" th:value="${days_before_reservation}" readonly>
+
+    <br/>
+    <br/>
     <label>Enter Price: </label>
     <input type="text" name="addit_expenses" required >
     <br/>
@@ -116,9 +109,12 @@
 
 </form>
 <br />
+                <br />
 <a href="/reservations">
     <button class="btn_cancel">Cancel</button>
 </a>
+            </div>
+    </div>
 </div>
 </body>
 </html>

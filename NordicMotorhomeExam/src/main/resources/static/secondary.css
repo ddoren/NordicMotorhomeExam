@@ -9,13 +9,13 @@
     padding-top: 20px;
     font-size: 17px;
     border-radius: 10px;
-    background-color: blue;
+    background-color: #77d8d8;
     border: none;
 }
 .btn-sm{
     font-size: 17px;
     border-radius: 10px;
-    background-color: blue;
+    background-color: #77d8d8;
     border: none;
 }
 .btn-sm:focus{
@@ -39,7 +39,7 @@ button{
    background-color: yellowgreen;
 }
 body{
-    background-color: #9fcdff;
+    background-color: #77d8d8;
 }
 .btn-delete{
     background-color: white;
