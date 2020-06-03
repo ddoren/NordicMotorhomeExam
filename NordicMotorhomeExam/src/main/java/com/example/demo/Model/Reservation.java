@@ -207,4 +207,17 @@ public class Reservation {
     public String toString(){
         return res_id + " " + res_customer + " " +res_motorhome + " " +invoice_id;
     }
+
+
+    public int calculateCancelPrice(int reservation_price, int number_days) {
+        int total_price = reservation_price;
+        if (number_days <= 1) {
+            total_price *= 0.95;
+        } else if (number_days <= 14 && number_days >= 2) {
+            total_price *= 0.80;
+        } else if (number_days <= 49 && number_days >= 15) {
+            total_price *= 0.50;
+        }
+        return total_price;
+    }
 }

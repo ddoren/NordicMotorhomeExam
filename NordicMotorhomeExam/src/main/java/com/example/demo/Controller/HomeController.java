@@ -424,14 +424,7 @@ public class HomeController {
         String reservation_start_date = reservation.getDate_reservation_start();
         int number_days = reservationService.countReservationDays(current_date,  reservation_start_date);
         model.addAttribute("days_before_reservation", number_days);
-        int total_price = reservation.getPrice();
-        if (number_days <= 1){
-            total_price *= 0.95;
-        }else if (number_days <= 14 && number_days >= 2){
-            total_price *= 0.80;
-        }else if (number_days <= 49 && number_days >= 15){
-            total_price *= 0.50;
-        }
+        int total_price = reservation.calculateCancelPrice(reservation.getPrice(), number_days);
         reservation.setPrice(total_price);
         model.addAttribute("reservation", reservation);
         Customer customer = customerService.findCustomerById(Integer.parseInt(reservation.getRes_customer()));
