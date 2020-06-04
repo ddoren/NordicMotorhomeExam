@@ -30,7 +30,8 @@ public class HomeController {
     ExtrasService extrasService;
     @Autowired
     InvoiceService invoiceService;
-
+    @Autowired
+    CarmodelService carmodelService;
     @Autowired
     MotorhomeService motorhomeService;
     @Autowired
@@ -44,7 +45,59 @@ public class HomeController {
     public String index() {
         return "home/index";
     }
+    //LOGIN
+    /**
+     * @author Alexander
+     * The idea of this method is to redirect the user to his appropriate main menu
+     * the global object employee is what stores the correct employee after validation
+     * this can then be used in other menus for figuring out correct return paths
+     * @param validation is an object used to store the inputed email and password from the fields
+     * @return it returns a string view which redirects the user to the correct menu depending on their role in the motorhome
+     *
+     */
+    @PostMapping("/login")
+    public String loginCheck(@ModelAttribute Validation validation) {
+        //with validation we find the correct employee and save it in an object of the employee type
+        //in trackEmployee we save the employee we found in the database
+        trackEmployee = loginService.findEmployee(validation.getEmail(), validation.getEmploy_pass());
+        //depending on the type it redirects to appropriate html page
+        if (trackEmployee.getType_employee().equalsIgnoreCase("owner")) {
+            return "redirect:/owner";
+        } else if (trackEmployee.getType_employee().equalsIgnoreCase("sales assistant")) {
+            return "redirect:/salesassistant/salesassistant";
+        } else if (trackEmployee.getType_employee().equalsIgnoreCase("bookkeeper"))
+        {
+            return "redirect:/bookkeeper/bookkeeper";
+        }
+        else
+        {
+            return "redirect:/motorhomemaintanence/repairMenu";
+        }
+    }
+    //Log out
+
+    /**
+     * When logging out we want to set the trackEmployee object to null
+     * and we redirect the user to the login page
+     * @return
+     */
+    @GetMapping("/logout")
+    public String logout()
+    {
+        trackEmployee=null;
+        return "redirect:/";
+    }
+
+
     //SPECIFIC users mapping
+    /*
+    * WE map out the href "/owner" to redirect the user upon clicking it the owner page
+    * It is done in a similar manner in the rest of the user's main menus
+    * */
+    @GetMapping("/owner")
+    public String owner() {
+        return "home/owner";
+    }
     @GetMapping("/salesassistant/salesassistant")
     public String salesAssistant()
     {
@@ -53,6 +106,13 @@ public class HomeController {
     @GetMapping("/bookkeeper/bookkeeper")
     public String booKeeper()
     {return  "home/bookkeeper/bookkeeper";}
+
+    /**
+     * Some menus have similar button to others (sales assistant and owner;repair guy and owner)
+     * so to prevent a user from returning to the wrong menu
+     * in this method we check his type so get sent to the correct place
+     * @return a string for redirecting to the approriate href link for the employees
+     */
     @GetMapping("/returnToMenu")
             public String returnToMenu()
     {
@@ -66,6 +126,13 @@ public class HomeController {
         }
         else return "redirect:/motorhomemaintanence/repairMenu";
     }
+    //An Href mapping for the repair/cleaning guys menu
+    /*The Controller calls the service method which then in turn calls the Repo
+    The Repo queries the database for all the motorhomes
+    They then get returned and saved in a list of the motorhome type
+    with the "motorhomes" string we can display specific data attributes of the motorhome
+    *
+    * */
     @GetMapping("/motorhomemaintanence/repairMenu")
             public String repairMenu(Model model)
     {
@@ -74,13 +141,20 @@ public class HomeController {
         return "home/motorhomemaintanence/repairMenu";
     }
     //RESERVATIONS
+    //An Href mapping for the reservations menu
+    /*The Controller calls the service method which then in turn calls the Repo
+    The Repo queries the database for all the reservations
+    They then get returned and saved in a list of the reservation type
+    with the "reservations" string we can display specific data attributes of the reservations type
+    *
+    * */
     @GetMapping("/reservations")
     public String indexReservation(Model model) {
         List<Reservation> reservationsList = reservationService.fetchAll();
         model.addAttribute("reservations", reservationsList);
         return "home/reservations/reservations";
     }
-
+    //href mapping for the finding a specific reservation
     @GetMapping("/viewOneReservation/{res_id}")
     public String viewOneReservation(@PathVariable("res_id") int res_id, Model model) {
         model.addAttribute("reservation", reservationService.findReservationById(res_id));
@@ -147,6 +221,12 @@ public class HomeController {
         return "/home/reservations/startReservation";
     }
 
+    /**
+     * This method is responsible for creating the Reservation
+     * Here we calculate the price based on the number of days and also based on the season
+     * @param reservation is the model object which will house the users input
+     * @return redirects the user to the finish reservation model with the res_id wiith it
+     */
     @PostMapping("/createReservation")
     public String createReservation(@ModelAttribute Reservation reservation) {
         String res_motorhome = reservation.getRes_motorhome();
@@ -191,47 +271,10 @@ public class HomeController {
 
     }
 
-
-    //LOGIN
-    /**
-     * @author Alexander
-     * The idea of this method is to redirect the user to his appropriate main menu
-     * @param validation is an object used to store the inputed email and password from the fields
-     * @return it returns a string view which redirects the user to the correct menu depending on their role in the motorhome
-     *
-     */
-    @PostMapping("/login")
-    public String loginCheck(@ModelAttribute Validation validation) {
-        //with validation we find the correct employee and save it in an object of the employee type
-        //this employee is a global parameter so it can keep
-        trackEmployee = loginService.findEmployee(validation.getEmail(), validation.getEmploy_pass());
-        if (trackEmployee.getType_employee().equalsIgnoreCase("owner")) {
-            return "redirect:/owner";
-        } else if (trackEmployee.getType_employee().equalsIgnoreCase("sales assistant")) {
-            return "redirect:/salesassistant/salesassistant";
-        } else if (trackEmployee.getType_employee().equalsIgnoreCase("bookkeeper"))
-        {
-            return "redirect:/bookkeeper/bookkeeper";
-        }
-       else
-           {
-               return "redirect:/motorhomemaintanence/repairMenu";
-           }
-   }
-   //Log out
-    @GetMapping("/logout")
-    public String logout()
-    {
-        trackEmployee=null;
-        return "redirect:/";
-    }
-       @GetMapping("/owner")
-       public String owner() {
-           return "home/owner";
-       }
-
-   //Exceptions
-   /* @ControllerAdvice
+     //Exceptions
+    //this method is used for handling the exceptions and making sure the
+    //View redirects the user to the correct error page
+    @ControllerAdvice
     public class controllerAdvice
     {
     @ExceptionHandler({Exception.class, SQLException.class, DataAccessException.class})
@@ -242,12 +285,18 @@ public class HomeController {
     }
     }
     @GetMapping("/error2")
-    public String errorHandling()
-    {
+    public String errorHandling() {
         return "home/error2";
-    }*/
+    }
 
        //EXTRAS
+       // An Href mapping for the reservations menu
+    /*The Controller calls the service method which then in turn calls the Repo
+    The Repo queries the database for all the reservations
+    They then get returned and saved in a list of the extra type
+    with the "extras" string we can display specific data attributes of the extra type
+    *
+    * */
     @GetMapping("/extras")
     public String extras(Model model)
     {
@@ -293,12 +342,16 @@ public class HomeController {
 
 
     //MOTORHOMES
-
-
+    //An Href mapping for the motorhome menu
+    /*The Controller calls the service method which then in turn calls the Repo
+    The Repo queries the database for all the reservations
+    They then get returned and saved in a list of the motorhome type
+    with the "motorhomes" string we can display specific data attributes of the motorhome type */
     @GetMapping("/motorhomes")
     public String motorhomes(Model model){
         List <Motorhome> motorhomeList = motorhomeService.fetchAll();
         model.addAttribute("motorhomes", motorhomeList);
+        //the ifs are responsible for redirecting to the correct menu based on employee type
         if(trackEmployee.getType_employee().equalsIgnoreCase("owner")) {
             return "home/motorhomes";
         }
@@ -308,12 +361,14 @@ public class HomeController {
         }
         else return "home/error2";
     }
+    //Href Mapping
     @GetMapping("/add_motorhome")
     public String add_motorhome(Model model){
         List<Carmodel> carmodelList = carmodelService.fetchAll();
         model.addAttribute("carmodels", carmodelList);
         return "home/add_motorhome";
     }
+    //A call to the Service class redirects back the the motorhomes menu
     @PostMapping ("/add_motorhome")
     public String add_motorhome(@ModelAttribute Motorhome motorhome){
         motorhomeService.addMotorhome(motorhome);
@@ -324,6 +379,7 @@ public class HomeController {
         motorhomeService.deleteMotorhome(motor_id);
         return "redirect:/";
     }
+    //Href mapping but also
     @GetMapping("/update_motorhome/{motor_id}")
     public String update(@PathVariable("motor_id") int motor_id, Model model) {
         model.addAttribute("motorhome", motorhomeService.findMotorhomeById(motor_id));
@@ -337,6 +393,13 @@ public class HomeController {
         return "redirect:/";
     }
     //Employee Just to view
+    //An Href mapping for the employee menu
+    /*The Controller calls the service method which then in turn calls the Repo
+    The Repo queries the database for all the employees
+    They then get returned and saved in a list of the employee type
+    with the "employees" string we can display specific data attributes of the employee type
+    *
+    * */
     @GetMapping("/employee")
     public String viewEmployee(Model model)
     {
@@ -345,8 +408,14 @@ public class HomeController {
         return "home/employee";
     }
     //MOTORHOME MODEL
-    @Autowired
-    CarmodelService carmodelService;
+
+    //An Href mapping for the carmodel menu
+    /*The Controller calls the service method which then in turn calls the Repo
+    The Repo queries the database for all the carmodels
+    They then get returned and saved in a list of the carmodel type
+    with the "carmodels" string we can display specific data attributes of the carmodel type
+    *
+    * */
     @GetMapping("/carmodels")
     public String carmodels(Model model) {
         List<Carmodel> carmodelList = carmodelService.fetchAll();
@@ -435,7 +504,6 @@ public class HomeController {
         int created_invoice = reservationService.getLastInsertedId();
         reservationService.stopDisplayReservation(Integer.parseInt(invoice.getRes_id()), created_invoice);
         return "redirect:/displayInvoices";
-
     }
 
     @GetMapping("/viewOneInvoice/{invoice_id}")

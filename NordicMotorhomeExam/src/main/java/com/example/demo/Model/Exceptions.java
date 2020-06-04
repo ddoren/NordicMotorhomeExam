@@ -1,9 +1,9 @@
 package com.example.demo.Model;
 
 public class Exceptions extends  RuntimeException{
-    //
-    //
 
+    //This class is an extension of the RuntimeException class
+    //We need this for finding exceptions in the SQL
     public Exceptions() {
     }
 

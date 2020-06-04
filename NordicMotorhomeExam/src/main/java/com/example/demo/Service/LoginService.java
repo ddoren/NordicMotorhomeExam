@@ -9,7 +9,9 @@ import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+/*this class is used for
+* Contacting the repo class and also catching
+* the SQL errors and returning a custom message to the Whitelabel Error Page*/
 @Service
 public class LoginService {
     @Autowired

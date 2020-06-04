@@ -3,10 +3,10 @@ package com.example.demo.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+// Model class for the invoices
 @Entity
 public class Invoice {
-
+    //attributes + attributes for queries
     @Id
     private int invoices_id;
     private String res_id;
@@ -28,10 +28,10 @@ public class Invoice {
     private String  addit_exp_descript;
     private String canceled;
     private int total_price;
-
+    //constructor
     public Invoice() {
     }
-
+    //constructor
     public Invoice(int invoices_id, String res_id, String res_customer, String res_motorhome, String service, String first_name, String last_name, String email, String phone_number, String model_name, String reg_number, int price_per_day, String date_reservation_start, String date_reservation_end, int nr_days, int price_for_extras, int addit_expenses, String addit_exp_descript, String canceled, int total_price) {
         this.invoices_id = invoices_id;
         this.res_id = res_id;

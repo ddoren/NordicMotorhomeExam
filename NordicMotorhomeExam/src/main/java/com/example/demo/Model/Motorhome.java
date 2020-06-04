@@ -2,7 +2,9 @@ package com.example.demo.Model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+//This class is used for creating objects of the motorhome type
+// Here we have getters and setters for each attribute of the class
+//@entity and @id help Spring associate the database object with the Java one
 @Entity
 public class Motorhome {
 
