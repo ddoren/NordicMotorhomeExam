@@ -20,8 +20,8 @@ public class ExtrasRepository {
     }
     public Extras addExtras(Extras ex)
     {
-        String sql= "INSERT INTO extras VALUES(DEFAULT,?,?,?,?)";
-        template.update(sql,ex.getName_extra(),ex.getPrice(),ex.getAvailable(),ex.getExtra_reservation());
+        String sql= "INSERT INTO extras VALUES(DEFAULT,?,?,?)";
+        template.update(sql,ex.getName_extra(),ex.getPrice(),ex.getAvailable());
         return null;
     }
     public Extras findExtraByID(int id)

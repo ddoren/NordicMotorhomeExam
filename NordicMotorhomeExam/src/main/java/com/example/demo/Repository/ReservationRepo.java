@@ -19,7 +19,7 @@ public class ReservationRepo {
     public List<Reservation> fetchAll(){
         String sql = "SELECT res_id, res_customer, res_motorhome, invoice_id, first_name, last_name, email, phone_number,  model_name, reg_number, \n" +
                 "\t   price_per_day, date_made, date_reservation_start, date_reservation_end, \n" +
-                "       DATEDIFF(r.date_reservation_end, r.date_reservation_start) AS nr_days, GROUP_CONCAT(name_extra SEPARATOR ',   ') as extra_products,  SUM(e.price) AS price_for_extras, season, r.price\n" +
+                "       DATEDIFF(r.date_reservation_end, r.date_reservation_start) AS nr_days, GROUP_CONCAT(name_extra SEPARATOR ',   ') as extra_products,  IF(SUM(e.price) IS NULL, 0, SUM(e.price)) AS price_for_extras, season, r.price\n" +
                 "FROM reservations r\n" +
                 "JOIN customers c ON r.res_customer = c.cus_id\n" +
                 "JOIN motorhomes m ON r.res_motorhome = m.motor_id\n" +
@@ -42,7 +42,7 @@ public class ReservationRepo {
     public Reservation findReservationById(int id) {
         String sql = "SELECT res_id, res_customer, res_motorhome, invoice_id, first_name, last_name, email, phone_number,  model_name, reg_number, \n" +
                 "\t   price_per_day, date_made, date_reservation_start, date_reservation_end, \n" +
-                "     DATEDIFF(r.date_reservation_end, r.date_reservation_start) AS nr_days, GROUP_CONCAT(name_extra SEPARATOR ',   ') as extra_products,  SUM(e.price) AS price_for_extras, season, r.price\n" +
+                "     DATEDIFF(r.date_reservation_end, r.date_reservation_start) AS nr_days, GROUP_CONCAT(name_extra SEPARATOR ',   ') as extra_products,  IF(SUM(e.price) IS NULL, 0, SUM(e.price)) AS price_for_extras, season, r.price\n" +
                 "FROM reservations r\n" +
                 "JOIN customers c ON r.res_customer = c.cus_id\n" +
                 "JOIN motorhomes m ON r.res_motorhome = m.motor_id\n" +
@@ -108,9 +108,9 @@ public class ReservationRepo {
         return cur_date;
     }
 
-    public void updatePrice(int price, int extra_id) {
+    public void updatePrice(int price, int res_id) {
         String sql = "UPDATE reservations SET price = ? WHERE res_id = ?;";
-        template.update(sql, price, extra_id);
+        template.update(sql, price, res_id);
     }
 
     public void addExtraIntoReservation(int res_id, int extra_id){

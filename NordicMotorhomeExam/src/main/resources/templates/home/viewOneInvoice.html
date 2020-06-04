@@ -16,7 +16,7 @@
 <h1>Invoice Information</h1>
     <div class="row">
         <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: center; padding-bottom: 10px">
     <span>Invoice ID: </span><span th:text="${invoice.invoices_id}"/><br />
     <span>Service Provided: </span><span th:text="${invoice.service}"/><br />
     <span>Reservation ID: </span><span th:text="${invoice.res_id}"/><br />
@@ -37,11 +37,14 @@
     <span>Price for Additional Expense: </span><span th:text="${invoice.addit_expenses}"/><br />
     <span>Reservation Canceled: </span><span th:text="${invoice.canceled}"/><br />
     <span>Total Price: </span><span th:text="${invoice.total_price}"/><br />
+
+    <br/>
+    <a href="/displayInvoices"><button class="btn_back">Return</button></a>
 </div>
 
         <div class="col-lg-4"></div>
 </div>
-    <a href="/displayInvoices"><button class="btn_back">Return</button></a>
+
 </div>
 </body>
 </html>

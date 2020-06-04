@@ -22,7 +22,7 @@ public class CarmodelRepo {
     }
 
     public void addModel(Carmodel m){
-        String sql = "INSERT INTO carmodel VALUES (?, ?, ?, ?, ?, ?, ?);";
+        String sql = "INSERT INTO carmodel VALUES (DEFAULT , ?, ?, ?, ?, ?, ?);";
         template.update(sql,m.getModel_id(), m.getModel_name(), m.getModel_type(), m.getBrand(), m.getSize(), m.getLayout(), m.getSeats());
     }
 

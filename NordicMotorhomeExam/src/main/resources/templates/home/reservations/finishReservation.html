@@ -20,11 +20,11 @@
 <input type="text" name="res_id" th:value="${res_id}" readonly><br/><br/>
 <span>Will the motorhome be picked up in store? </span>
 <label for="yes">Yes    </label>
-<input type="radio" id="yes" name="pick_in_store" value="Yes">
+<input type="radio" id="yes" name="pick_in_store" value="Yes" required>
 <label for="no"> No </label>
 <input type="radio" id="no" name="pick_in_store" value="No"><br><br/>
 <label>Enter the distance from office to drop-off (in km): </label>
-<input type="text" name="distance" value="0" required /><br /><br>
+<input type="text" name="distance" value="0" required pattern="\d*" /><br /><br>
 <label>Choose Extra ID:</label>
 <input type="text" name="extra_id" required pattern="^[1-9][0-9]*"><br /><br/>
 <input type="submit">

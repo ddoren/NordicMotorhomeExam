@@ -15,22 +15,22 @@
 <div class = "container">
     <br/>
     <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8" style="background-color: lightblue;border-radius: 30px;text-align: right">
             <form action="/updateReservation" method="post">
                 <label>Reservation ID: </label>
                 <input type="text" name="res_id" th:value="${reservation.res_id}" readonly /><br />
                 <br/>
                 <label>Change Customer ID: </label>
-                <input type="text" name="res_customer" th:value="${reservation.res_customer}" required>
+                <input type="text" name="res_customer" th:value="${reservation.res_customer}" readonly>
                 <br/>
                 <br/>
                 <label>Change Motorhome ID: </label>
-                <input type="text" name="res_motorhome" th:value="${reservation.res_motorhome}" required>
+                <input type="text" name="res_motorhome" th:value="${reservation.res_motorhome}" required pattern="^[1-9][0-9]*">
                 <br/>
                 <br/>
                 <label>Change Reservation Date: </label>
-                <input type="text" name="date_reservation" th:value="${reservation.date_reservation}" required  >
+                <input type="text" name="date_reservation" th:value="${reservation.date_reservation}" required th:min="${current_date}" >
                 <br/>
                 <br/>
                 <label>Change Price: </label>
@@ -42,13 +42,39 @@
                 <input type="submit" value="Save Changes">
 
             </form>
-            <br />
-            <a href="/reservations">
-                <button class="btn-cancel">Cancel</button>
-            </a>
         </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-2"></div>
     </div>
+    <h1>Motorhome List</h1>
+    <div class="table-responsive">
+        <table class="table" style="background-color: lightblue">
+            <thead class ="thead-dark">
+            <tr>
+                <th>Motorhome ID</th>
+                <th>Registration Number</th>
+                <th>Motorhome Model</th>
+                <th>Rent Status</th>
+                <th>Mileage</th>
+                <th>Capacity</th>
+                <th>Price per Day</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="motorhome: ${motorhomes}">
+                <td th:text="${motorhome.motor_id}"/>
+                <td th:text="${motorhome.reg_number}"/>
+                <td th:text="${motorhome.model_name}"/>
+                <td th:text="${motorhome.status_rent}"/>
+                <td th:text="${motorhome.mileage}"/>
+                <td th:text="${motorhome.capacity}"/>
+                <td th:text="${motorhome.price_per_day}"/>
+                <td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
 </div>
 </body>
 </html>

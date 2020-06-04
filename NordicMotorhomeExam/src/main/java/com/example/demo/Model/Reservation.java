@@ -23,7 +23,7 @@ public class Reservation {
     private String date_reservation_end;
     private String nr_days;
     private String extra_products;
-    private String price_for_extras;
+    private int price_for_extras;
     private String season;
     private int distance;
     private int price_for_transfer;
@@ -33,7 +33,7 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int res_id, String res_customer, String res_motorhome, String invoice_id, String first_name, String last_name, String email, String phone_number, String model_name, String reg_number, String price_per_day, String date_made, String date_reservation_start, String date_reservation_end, String nr_days, String extra_products, String price_for_extras, String season, int price) {
+    public Reservation(int res_id, String res_customer, String res_motorhome, String invoice_id, String first_name, String last_name, String email, String phone_number, String model_name, String reg_number, String price_per_day, String date_made, String date_reservation_start, String date_reservation_end, String nr_days, String extra_products, int price_for_extras, String season, int price) {
         this.res_id = res_id;
         this.res_customer = res_customer;
         this.res_motorhome = res_motorhome;
@@ -183,11 +183,11 @@ public class Reservation {
         this.extra_products = extra_products;
     }
 
-    public String getPrice_for_extras() {
+    public int getPrice_for_extras() {
         return price_for_extras;
     }
 
-    public void setPrice_for_extras(String price_for_extras) {
+    public void setPrice_for_extras(int price_for_extras) {
         this.price_for_extras = price_for_extras;
     }
 
@@ -228,7 +228,7 @@ public class Reservation {
     }
 
     public int calculateCancelPrice(int reservation_price, int number_days) {
-        int total_price = reservation_price;
+        int total_price = this.price;
         if (number_days <= 1) {
             total_price *= 0.95;
         } else if (number_days <= 14 && number_days >= 2) {
@@ -242,7 +242,8 @@ public class Reservation {
     public double addDropOff(String pick_in_store, int distance){
         int result = this.price;
         if (pick_in_store.equals("No")){
-            result +=  distance * 0.70;
+            this.price_for_transfer = (int) (distance * 0.70);
+            result +=  this.price_for_transfer;
         }
         return result;
     }

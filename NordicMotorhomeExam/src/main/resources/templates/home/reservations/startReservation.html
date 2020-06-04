@@ -14,7 +14,7 @@
     <br/>
     <div class="row">
         <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right; padding-bottom: 20px">
 <h1>Choose Dates</h1>
 <form action="availableMotorhome?cus_id=${customer.cus_id}&date_reservation_start=${date_reservation_start}&date_reservation_end=${date_reservation_end}" method="get">
     <label>Customer ID:</label>
@@ -28,8 +28,15 @@
     <label>Enter Reservation Date: </label>
     <input type="date" name="date_reservation_end" required th:min="${current_date}">
     <br/>
-    <input id = "add" type="submit" value="Add new Reservation">
     <br/>
+    <div style="text-align:center">
+        <input id = "add" type="submit" value="Add new Reservation">
+        <br/>
+        <br/>
+        <a href="/reservations">
+            <button class = "btn-cancel">Cancel</button>
+        </a>
+    </div>
     <br/>
 </form>
 </div>

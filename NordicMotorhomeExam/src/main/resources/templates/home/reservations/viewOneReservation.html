@@ -16,7 +16,7 @@
     <br/>
     <div class="row">
         <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: left">
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: left;padding-bottom: 10px">
             <span>Reservation ID: </span><span th:text="${reservation.res_id}"/><br />
             <span>Customer ID: </span><span th:text="${reservation.res_customer}"/><br />
             <span>Customer First Name: </span><span th:text="${reservation.first_name}"/><br />
@@ -26,7 +26,7 @@
             <span>Motorhome ID: </span><span th:text="${reservation.res_motorhome}"/><br />
             <span>Motorhome Model: </span><span th:text="${reservation.model_name}"/><br />
             <span>Motorhome Registration Number: </span><span th:text="${reservation.reg_number}"/><br />
-            <span>Price per Day for Motorhome: </span><span th:text="${reservation.price_per_day}"/><span> dkk</span><br />
+            <span>Price per Day for Motorhome: </span><span th:text="${reservation.price_per_day}"/><span> euro</span><br />
             <span>Reservation Made: </span><span th:text="${reservation.date_made}"/><br />
             <span>Reservation Start Date: </span><span th:text="${reservation.date_reservation_start}"/><br />
             <span>Reservation End Date: </span><span th:text="${reservation.date_reservation_end}"/><br />
@@ -34,12 +34,14 @@
             <span>Additional Accessories: </span><span th:text="${reservation.extra_products}"/><br />
             <span>Additional Price for Accessories: </span><span th:text="${reservation.price_for_extras}"/><br />
             <span>Season: </span><span th:text="${reservation.season}"/><br />
-            <span>Price: </span><span th:text="${reservation.price}"/><span> dkk</span><br />
+            <span>Price: </span><span th:text="${reservation.price}"/><span> euro</span><br />
 
             <br/>
-            <a href="/reservations">
-                <button class="btn_back">Go Back</button>
-            </a>
+            <div style="text-align:center">
+                <a href="/reservations">
+                    <button class="btn_back">Go Back</button>
+                </a>
+            </div>
             <br/>
         </div>
         <div class="col-lg-4"></div>

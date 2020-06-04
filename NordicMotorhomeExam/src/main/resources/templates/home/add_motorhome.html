@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Add Motorhome</title>
@@ -16,28 +16,33 @@
 <div class = "container" style="text-align: center">
     <h1 style="text-align: center">Create motorhome</h1>
     <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="background-color: lightblue;border-radius: 30px;text-align: center">
             <br/>
             <form action="/add_motorhome" method="post">
                 <label>Enter Reg-Num: </label>
-                <input type="text" name="reg_number" required>
+                <input type="text" name="reg_number" required pattern="\D\D\d\d\d\d\d">
                 <br/>
                 <br/>
-                <label>Enter Model: </label>
-                <input type="text" name="motor_model" required>
+                <label>&emsp;Enter Model: </label>
+                <input type="text" name="motor_model" required pattern="^[1-9][0-9]*">
                 <br/>
                 <br/>
-                <label>Rent Status: </label>
-                <input type="text" name="status_rent" required  >
+                <label for="status">&emsp;&emsp;Status: </label>
+                <input list="status" name="status_rent" required >
+                <datalist id="status">
+                    <option value="Ready">
+                    <option value="Repair">
+                    <option value="Cleaning">
+                </datalist>
                 <br/>
                 <br/>
                 <label>Enter Mileage: </label>
-                <input type="number" name="mileage" required  >
+                <input type="text" name="mileage" required pattern="\d*" >
                 <br/>
                 <br/>
                 <label>Enter Capacity: </label>
-                <input type="number" name="capacity" required >
+                <input type="text" name="capacity" required >
                 <br/>
                 <br/>
 
@@ -45,11 +50,47 @@
 
             </form>
             <br />
+
+
+        <h3>Motorhome Model List</h3>
+        <br/>
+        <div class="table-responsive">
+            <table class="table" style="background-color: lightblue;">
+                <thead class ="thead-dark">
+                <tr>
+                    <th>Model ID</th>
+                    <th>Model Name</th>
+                    <th>Model Type</th>
+                    <th>Brand</th>
+                    <th>Size</th>
+                    <th>Layout</th>
+                    <th>Seats</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="carmodel: ${carmodels}">
+                    <td th:text="${carmodel.model_id}"/>
+                    <td th:text="${carmodel.model_name}"/>
+                    <td th:text="${carmodel.model_type}"/>
+                    <td th:text="${carmodel.brand}"/>
+                    <td th:text="${carmodel.size}"/>
+                    <td th:text="${carmodel.layout}"/>
+                    <td th:text="${carmodel.seats}"/>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        <div>
             <a href="/motorhomes">
                 <button class="btn-cancel">Cancel</button>
             </a>
         </div>
-        <div class="col-lg-4"></div>
+        </div>
+        <div class="col-lg-3"></div>
     </div>
 </div>
 </body>

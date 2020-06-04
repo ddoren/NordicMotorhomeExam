@@ -35,7 +35,7 @@
                 <br/>
                 <br/>
                 <label>Size: </label>
-                <input type="text" name="size" th:value="${carmodel.size}" required  >
+                <input type="text" name="size" th:value="${carmodel.size}" required pattern="\d*"  >
                 <br/>
                 <br/>
                 <label>Layout: </label>
@@ -43,7 +43,7 @@
                 <br/>
                 <br/>
                 <label>Seats: </label>
-                <input type="text" name="seats" th:value="${carmodel.seats}" required >
+                <input type="text" name="seats" th:value="${carmodel.seats}" required pattern=pattern="^[1-9][0-9]*">
                 <br/>
                 <br/>
                 <input type="submit" value="Save Changes">

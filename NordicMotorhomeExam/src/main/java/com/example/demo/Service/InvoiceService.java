@@ -24,5 +24,7 @@ public class InvoiceService {
         return invoiceRepo.findInvoiceById(id);
     }
 
-
+    public void updatePrice(int price, int invoices_id) {
+        invoiceRepo.updatePrice(price, invoices_id);
+    }
 }

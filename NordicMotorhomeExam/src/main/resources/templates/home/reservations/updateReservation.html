@@ -15,10 +15,11 @@
     <h1 style="background-color: #eff3c6;text-align: center">Update reservation</h1>
     <br/>
     <div class="row">
-        <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+        <div class="col-lg-3"></div>
+        <div class="col-lg-6" style="background-color: lightblue;border-radius: 30px;text-align: right; padding-bottom: 20px">
 
 <form action="/updateReservation" method="post">
+    <br>
     <label>Reservation ID: </label>
     <input type="text" name="res_id" th:value="${reservation.res_id}" readonly /><br />
     <br/>
@@ -43,15 +44,18 @@
     </datalist>
     <br/>
     <br/>
-    <input type="submit" value="Save Changes">
-
+    <div style="text-align:center">
+    <input style="alignment: center" type="submit" value="Save Changes">
+    </div>
 </form>
 <br />
-<a href="/reservations">
-    <button class = "btn-cancel">Cancel</button>
-</a>
+    <div style="text-align:center">
+        <a href="/reservations">
+            <button class = "btn-cancel">Cancel</button>
+        </a>
+    </div>
 </div>
-        <div class="col-lg-4"></div>
+        <div class="col-lg-3"></div>
     </div>
 </div>
 </body>

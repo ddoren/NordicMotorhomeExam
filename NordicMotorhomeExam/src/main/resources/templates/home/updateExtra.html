@@ -20,23 +20,19 @@
         <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
             <form action="/updateExtra" method="post">
                 <label>Extra ID: </label>
-                <input type="number" name="extra_id" th:value="${extra.extra_id}" >
+                <input type="number" name="extra_id" th:value="${extra.extra_id}" readonly>
                 <br/>
                 <br/>
                 <label>Change extra name</label>
-                <input type="text" name="name_extra" th:value="${extra.name_extra}" required>
+                <input type="text" name="name_extra" th:value="${extra.name_extra}" required pattern="\D*">
                 <br/>
                 <br/>
                 <label>Change price: </label>
-                <input type="text" name="price" th:value="${extra.price}" required>
+                <input type="text" name="price" th:value="${extra.price}" required pattern="\d*">
                 <br/>
                 <br/>
                 <label>Change availability: </label>
-                <input type="text" name="available" th:value="${extra.available}" required  >
-                <br/>
-                <br/>
-                <label>Reservation ID:</label>
-                <input  type="text" name="extra_reservation" th:value="${extra.extra_reservation}"  maxlength="3" required>
+                <input type="text" name="available" th:value="${extra.available}" required  pattern="\D*">
                 <br/>
                 <br/>
                 <input type="submit" value="Save Changes">

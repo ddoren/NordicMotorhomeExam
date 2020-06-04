@@ -19,10 +19,6 @@
         <div class="col-lg-4"></div>
         <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
             <form action="/add_carmodel" method="post">
-                <label title="">Enter Model ID: </label>
-                <input type="number" name="model_id" required>
-                <br/>
-                <br/>
                 <label>Enter Model Name: </label>
                 <input type="text" name="model_name" required>
                 <br/>
@@ -36,7 +32,7 @@
                 <br/>
                 <br/>
                 <label title="Size should be entered with meters" >Enter Size: </label>
-                <input type="text" name="size" required  >
+                <input type="text" name="size" required pattern="\d*" >
                 <br/>
                 <br/>
                 <label>Enter Layout: </label>
@@ -44,7 +40,7 @@
                 <br/>
                 <br/>
                 <label title="Should be a number">Enter Seats: </label>
-                <input type="text" name="seats" required >
+                <input type="text" name="seats" required pattern="\d*" >
                 <br/>
                 <br/>
 
@@ -56,6 +52,7 @@
                 <button class="btn_back">Cancel</button>
             </a>
         </div>
+
         <div class="col-lg-4"></div>
     </div>
 

@@ -27,7 +27,6 @@
                 <th>Extra name</th>
                 <th>Price</th>
                 <th>Availability</th>
-                <th>Reservation</th>
                 <th>Others</th>
 
             </tr>
@@ -39,7 +38,6 @@
                 <td th:text="${extra.name_extra}"/>
                 <td th:text="${extra.price}"/>
                 <td th:text="${extra.available}"/>
-                <td th:text="${extra.extra_reservation}"/>
                 <td>
                     <a th:href="@{'/viewOneExtra/' + ${extra.extra_id}}">
                         <button class="btn-view">View Info</button>
