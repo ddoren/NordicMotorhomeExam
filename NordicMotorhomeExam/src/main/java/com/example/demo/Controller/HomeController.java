@@ -372,12 +372,12 @@ public class HomeController {
     @PostMapping ("/add_motorhome")
     public String add_motorhome(@ModelAttribute Motorhome motorhome){
         motorhomeService.addMotorhome(motorhome);
-        return "redirect:motorhomes";
+        return "redirect:/motorhomes";
     }
     @GetMapping("/delete_motorhome/{motor_id}")
     public String delete_motorhome(@PathVariable("motor_id") int motor_id, Model model){
         motorhomeService.deleteMotorhome(motor_id);
-        return "redirect:/";
+        return "redirect:/returnToMenu";
     }
     //Href mapping but also
     @GetMapping("/update_motorhome/{motor_id}")
@@ -390,7 +390,7 @@ public class HomeController {
     @PostMapping("/update_motorhome")
     public String update_motorhome(@ModelAttribute Motorhome motorhome){
         motorhomeService.updateMotorhome(motorhome.getMotor_id(), motorhome);
-        return "redirect:/";
+        return "redirect:/returnToMenu";
     }
     //Employee Just to view
     //An Href mapping for the employee menu
@@ -431,7 +431,7 @@ public class HomeController {
     @PostMapping ("add_carmodel")
     public String add_carmodel(@ModelAttribute Carmodel carmodel){
         carmodelService.addModel(carmodel);
-        return "redirect:carmodels";
+        return "redirect:/carmodels";
     }
 
     @GetMapping ("/delete_carmodel/{model_id}")
