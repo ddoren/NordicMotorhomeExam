@@ -106,8 +106,13 @@ public class HomeController {
 
     @PostMapping("/updateReservation")
     public String updateReservation(@ModelAttribute Reservation reservation) {
+        int nr_days = reservationService.countReservationDays(reservation.getDate_reservation_start(), reservation.getDate_reservation_end());
+        Motorhome motorhome = motorhomeService.findMotorhomeById(Integer.parseInt(reservation.getRes_motorhome()));
+        int price_per_day = motorhome.getPrice_per_day();
+        int new_price = nr_days * price_per_day;
+        reservation.setPrice(new_price);
         reservationService.updateReservation(reservation.getRes_id(), reservation);
-        return "redirect:/reservations";
+        return "redirect:/viewOneReservation/" + reservation.getRes_id();
     }
 
     @GetMapping("/deleteReservation/{res_id}")
@@ -154,6 +159,7 @@ public class HomeController {
         String res_motorhome = reservation.getRes_motorhome();
         Motorhome motorhome = motorhomeService.findMotorhomeById(Integer.parseInt(res_motorhome));
         int total_price = motorhome.getPrice_per_day() * reservationService.countReservationDays(reservation.getDate_reservation_start(),reservation.getDate_reservation_end());
+
         if (reservation.getSeason().equals("Normal Season")) {
             total_price *=  1.3;
         } else if (reservation.getSeason().equals("High Season")) {
@@ -174,7 +180,7 @@ public class HomeController {
         return "home/reservations/finishReservation";
     }
     @RequestMapping(value = "/finishReservation", method = RequestMethod.GET)
-    public String finishReservation(Model model, @RequestParam(value = "pick_in_store") String pick_in_store, @RequestParam(value = "distance") int distance, @RequestParam(value = "extra_id") int extra_id, @RequestParam(value = "res_id") int res_id) {
+    public String finishReservation(@RequestParam(value = "pick_in_store") String pick_in_store, @RequestParam(value = "distance") int distance, @RequestParam(value = "extra_id") int extra_id, @RequestParam(value = "res_id") int res_id) {
         Reservation reservation = reservationService.findReservationById(res_id);
         System.out.println(pick_in_store);
         System.out.println(distance);

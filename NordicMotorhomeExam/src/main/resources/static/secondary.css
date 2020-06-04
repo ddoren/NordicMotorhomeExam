@@ -33,13 +33,10 @@ button{
 }
 .add{
     border-radius: 20px;
-    background-color: white;
+    background-color: lightblue;
 }
 .add:hover{
-   background-color: yellowgreen;
-}
-body{
-    background-color: #77d8d8;
+    background-color: yellowgreen;
 }
 .btn-delete{
     background-color: white;
@@ -77,9 +74,9 @@ body{
     background-color: yellowgreen;
 }
 .btn-update{
-     background-color: white;
-     border-radius: 20px;
- }
+    background-color: white;
+    border-radius: 20px;
+}
 .btn-update:hover{
     background-color: yellowgreen;
 }
@@ -91,9 +88,20 @@ body{
     background-color: yellowgreen;
 }
 .btn-logout{
-    background-color: white;
+    background-color: lightblue;
     border-radius: 20px;
 }
 .btn-logout:hover{
-    background-color: yellowgreen;
+    background-color: red;
+}
+body{
+    background-image: url("bg.jpg");
+}
+table{
+    width: 100%;
+    border: 1px;
+    min-width: 100%;
+    position: relative;
+    opacity: 0.97;
+    background-color: white;
 }

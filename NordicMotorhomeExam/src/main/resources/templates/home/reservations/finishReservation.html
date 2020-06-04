@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/secondary.css">
 </head>
 <body>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
+<div class="container" style="text-align: center">
 <h1>Pick-up and Drop-off</h1>
+    <br/>
 <form action="/finishReservation?pick_in_store=${pick_in_store}&distance=${distance}&extra_id=${extra_id}&res_id=${res_id}" method="get">
 <label>Reservation ID:</label>
-<input type="text" name="res_id" th:value="${res_id}" readonly><br />
+<input type="text" name="res_id" th:value="${res_id}" readonly><br/><br/>
 <span>Will the motorhome be picked up in store? </span>
 <label for="yes">Yes    </label>
 <input type="radio" id="yes" name="pick_in_store" value="Yes">
 <label for="no"> No </label>
-<input type="radio" id="no" name="pick_in_store" value="No">
+<input type="radio" id="no" name="pick_in_store" value="No"><br><br/>
 <label>Enter the distance from office to drop-off (in km): </label>
-<input type="text" name="distance" value="0" required /><br />
+<input type="text" name="distance" value="0" required /><br /><br>
 <label>Choose Extra ID:</label>
-<input type="text" name="extra_id" required pattern="^[1-9][0-9]*"><br />
+<input type="text" name="extra_id" required pattern="^[1-9][0-9]*"><br /><br/>
 <input type="submit">
+
 </form>
+    <br />
+    <br />
 <div class="table-responsive">
-    <table class="table">
+    <table class="table" style="background-color: lightblue">
         <thead class ="thead-dark">
         <tr>
             <th>Extra ID</th>
@@ -43,6 +54,6 @@
         </tbody>
     </table>
 </div>
-
+</div>
 </body>
 </html>

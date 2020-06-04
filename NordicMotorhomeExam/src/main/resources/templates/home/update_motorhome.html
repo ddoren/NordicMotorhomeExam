@@ -13,43 +13,46 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container" style="text-align: center">
-    <h1 style="background-color: #eff3c6;text-align: center">Update motorhome</h1>
+    <h1 style="text-align: center">Update motorhome</h1>
     <br/>
-    <form action="/update_motorhome" method="post">
-    <label>Motorhome ID: </label>
-    <input type="text" name="motor_id" th:value="${motorhome.motor_id}" readonly /><br />
-    <br/>
-    <label>Change Registration Number: </label>
-    <input type="text" name="reg_number" th:value="${motorhome.reg_number}" required>
-    <br/>
-    <br/>
-    <label>Change Motorhome Model: </label>
-    <input type="text" name="motor_model" th:value="${motorhome.motor_model}" required>
-    <br/>
-    <br/>
-    <label>Change Rent Status: </label>
-    <input type="text" name="status_rent" th:value="${motorhome.status_rent}" required  >
-    <br/>
-    <br/>
-    <label>Change Mileage: </label>
-    <input type="text" name="mileage" th:value="${motorhome.mileage}" required >
-    <br/>
-    <br/>
-    <label>Change Capacity: </label>
-    <input type="text" name="capacity" th:value="${motorhome.capacity}" required >
-    <br/>
-    <br/>
-    <label>Change Price Per Day: </label>
-    <input type="int" name="price_per_day" th:value="${motorhome.price_per_day}" required >
-    <br/>
-    <br/>
-    <input type="submit" value="Save Changes">
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+            <form action="/update_motorhome" method="post">
+                <label>Motorhome ID: </label>
+                <input type="text" name="motor_id" th:value="${motorhome.motor_id}" readonly /><br />
+                <br/>
+                <label>Change Reg-Number: </label>
+                <input type="text" name="reg_number" th:value="${motorhome.reg_number}" required>
+                <br/>
+                <br/>
+                <label>Change Model: </label>
+                <input type="text" name="motor_model" th:value="${motorhome.motor_model}" required>
+                <br/>
+                <br/>
+                <label>Change Rent Status: </label>
+                <input type="text" name="status_rent" th:value="${motorhome.status_rent}" required  >
+                <br/>
+                <br/>
+                <label>Change Mileage: </label>
+                <input type="text" name="mileage" th:value="${motorhome.mileage}" required >
+                <br/>
+                <br/>
+                <label>Change Capacity: </label>
+                <input type="text" name="capacity" th:value="${motorhome.capacity}" required >
+                <br/>
+                <br/>
+                <input type="submit" value="Save Changes">
 
-</form>
-<br />
-<a href="/motorhomes">
-    <button class="btn-cancel">Cancel</button>
-</a>
+            </form>
+            <br />
+            <a href="/motorhomes">
+                <button class="btn-cancel">Cancel</button>
+            </a>
+        </div>
+
+    <div class="col-lg-4"></div>
+</div>
 </div>
 </body>
 </html>

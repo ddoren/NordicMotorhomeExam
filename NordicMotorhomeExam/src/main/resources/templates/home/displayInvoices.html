@@ -13,44 +13,45 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container">
-<h1 style="background-color: #eff3c6;text-align: center">Invoices</h1>
+    <h1 style="text-align: center">Invoices</h1>
     <div class="table-responsive">
-        <table class="table">
-<thead class ="thead-dark">
-<tr>
-    <th>Invoice ID</th>
-    <th>Customer</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Motorhome</th>
-    <th>Reservation End Date</th>
-    <th>Reservation Start Date</th>
-    <th>Canceled</th>
-    <th>Total Price</th>
-</tr>
-</thead>
-<tbody>
-<tr th:each="invoice: ${invoices}">
-    <td th:text="${invoice.invoices_id}"/>
-    <td><span th:text="${invoice.first_name}"/> <span th:text="${invoice.last_name}"/></td>
-    <td th:text="${invoice.email}"/>
-    <td th:text="${invoice.phone_number}"/>
-    <td th:text="${invoice.model_name}"/>
-    <td th:text="${invoice.reg_number}"/>
-    <td th:text="${invoice.date_reservation_start}"/>
-    <td th:text="${invoice.date_reservation_end}"/>
-    <td th:text="${invoice.canceled}"/>
-    <td th:text="${invoice.total_price}"/>
+        <table class="table" style="background-color: lightblue;">
+            <thead class ="thead-dark">
+            <tr>
+                <th>Invoice ID</th>
+                <th>Customer</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Motorhome</th>
+                <th>Reservation End Date</th>
+                <th>Reservation Start Date</th>
+                <th>Canceled</th>
+                <th>Total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="invoice: ${invoices}">
+                <td th:text="${invoice.invoices_id}"/>
+                <td><span th:text="${invoice.first_name}"/> <span th:text="${invoice.last_name}"/></td>
+                <td th:text="${invoice.email}"/>
+                <td th:text="${invoice.phone_number}"/>
+                <td th:text="${invoice.model_name}"/>
+                <td th:text="${invoice.reg_number}"/>
+                <td th:text="${invoice.date_reservation_start}"/>
+                <td th:text="${invoice.date_reservation_end}"/>
+                <td th:text="${invoice.canceled}"/>
+                <td th:text="${invoice.total_price}"/>
 
-    <td>
-        <a th:href="@{'/viewOneInvoice/' + ${invoice.invoices_id}}">
-            <button class="btn-view">View Info</button>
-        </a>
-    </td>
-</tr>
-</tbody>
-</table>
+                <td>
+                    <a th:href="@{'/viewOneInvoice/' + ${invoice.invoices_id}}">
+                        <button class="btn-view">View Info</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+    <a href="/returnToMenu"><button class="btn_back">Return</button></a>
 </div>
 </body>
 </html>

@@ -1,5 +1,6 @@
 
 body{
+    background-image: url("bg.jpg");
     background-color: #77d8d8;
 
 }
@@ -10,7 +11,7 @@ body{
     border-radius: 20px;
 }
 .btn-xl:hover {
-  background-color: lime;
+    background-color: lime;
 }
 .btn-sm:hover{
     background-color: lime;
@@ -35,12 +36,12 @@ form{
     padding-top: 15px;
     font-size: 17px;
     border-radius: 10px;
-    background-color: #77d8d8 ;
+    background-color: #17a2b8;
     border: none;
     text-decoration: none;
 }
 .btn-xl:hover{
-background-color: aqua ;
+    background-color: aqua ;
 }
 .top-left {
     position: absolute;
@@ -50,7 +51,7 @@ background-color: aqua ;
 .btn-sm{
     font-size: 17px;
     border-radius: 10px;
-    background-color:#77d8d8;
+    background-color:#17a2b8;
     border: none;
     text-decoration: none;
 }
@@ -76,4 +77,11 @@ a:hover{
 }
 a:active{
     border-radius: 20px;
+}
+img{
+    border-radius: 50%;
+}
+.col-lg{
+    padding: none; !important;
+    margin: 0 !important;
 }

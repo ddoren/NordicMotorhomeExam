@@ -13,6 +13,10 @@
 
 <div class = "container">
     <br/>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+    <br/>
     <form action="/createReservation" method="post">
     <h1>Chosen Dates</h1>
         <label>Customer ID:</label>
@@ -37,9 +41,12 @@
         <input type="submit">
 
     </form>
-    <h1>Motorhome List</h1>
+        </div>
+            <div class="col-lg-4"></div>
+    </div>
+        <h1>Motorhome List</h1>
     <div class="table-responsive">
-        <table class="table">
+        <table class="table" style="background-color: lightblue">
         <thead class ="thead-dark">
         <tr>
             <th>Motorhome ID</th>
@@ -64,9 +71,10 @@
             <td>
         </tr>
         </tbody>
-    </table>
+        </table>
     </div>
-</head>
-</div>
+
+    </div>
 </body>
 </html>
+

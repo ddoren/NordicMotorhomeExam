@@ -16,15 +16,16 @@ public class InvoiceRepo {
     JdbcTemplate template;
 
     public List<Invoice> fetchAll(){
-        String sql = "SELECT *\n" +
-                "FROM invoices i\n" +
-                "Left JOIN  reservations r ON i.invoice_reservation = r.res_id\n" +
-                "JOIN customers custs ON r.res_customer = custs.cus_id\n" +
-                "JOIN motorhomes m ON r.res_motorhome = m.motor_id \n" +
-                "JOIN carmodel c ON m.motor_model = c.model_id\n" +
-                "LEFT JOIN extras_in_reservations er ON er.reservation_id = r.res_id\n" +
-                "LEFT JOIN extras e ON er.extra_id = e.extra_id\n" +
-                "GROUP BY res_id;\n";
+        String sql = "SELECT invoices_id, res_id, res_customer, res_motorhome, invoice_id, first_name, last_name, email, phone_number,  model_name, reg_number, \n" +
+        "\t   price_per_day, date_made, date_reservation_start, date_reservation_end, \n" +
+                "     DATEDIFF(r.date_reservation_end, r.date_reservation_start) AS nr_days, GROUP_CONCAT(name_extra SEPARATOR ',   ') as extra_products,  SUM(e.price) AS price_for_extras, season, r.price\n" +
+                "FROM reservations r\n" +
+                "JOIN customers c ON r.res_customer = c.cus_id\n" +
+                "JOIN motorhomes m ON r.res_motorhome = m.motor_id\n" +
+                "JOIN carmodel cm ON m.motor_model = cm.model_id\n" +
+                "JOIN extras_in_reservations er ON er.reservation_id = r.res_id\n" +
+                "JOIN extras e ON er.extra_id = e.extra_id\n" +
+                "GROUP BY res_id";
         RowMapper<Invoice> rowMapper = new BeanPropertyRowMapper<>(Invoice.class);
         return template.query(sql, rowMapper);
     }
@@ -35,16 +36,17 @@ public class InvoiceRepo {
     }
 
     public Invoice findInvoiceById(int id) {
-        String sql = "SELECT *\n" +
-                "FROM invoices i\n" +
-                "Left JOIN  reservations r ON i.invoice_reservation = r.res_id\n" +
-                "JOIN customers custs ON r.res_customer = custs.cus_id\n" +
-                "JOIN motorhomes m ON r.res_motorhome = m.motor_id \n" +
-                "JOIN carmodel c ON m.motor_model = c.model_id\n" +
-                "LEFT JOIN extras_in_reservations er ON er.reservation_id = r.res_id\n" +
-                "LEFT JOIN extras e ON er.extra_id = e.extra_id\n" +
+        String sql = "SELECT invoices_id, res_id, res_customer, res_motorhome, invoice_id, first_name, last_name, email, phone_number,  model_name, reg_number, \n" +
+                "\t   price_per_day, date_made, date_reservation_start, date_reservation_end, \n" +
+                "       DATEDIFF(r.date_reservation_end, r.date_reservation_start) AS nr_days, GROUP_CONCAT(name_extra SEPARATOR ',   ') as extra_products,  SUM(e.price) AS price_for_extras, season, r.price\n" +
+                "FROM reservations r\n" +
+                "JOIN customers c ON r.res_customer = c.cus_id\n" +
+                "JOIN motorhomes m ON r.res_motorhome = m.motor_id\n" +
+                "JOIN carmodel cm ON m.motor_model = cm.model_id\n" +
+                "JOIN extras_in_reservations er ON er.reservation_id = r.res_id\n" +
+                "JOIN extras e ON er.extra_id = e.extra_id\n" +
                 "WHERE i.invoices_id = ? \n" +
-                "GROUP BY res_id;";
+                "GROUP BY res_id\n";
 
         RowMapper<Invoice> rowMapper = new BeanPropertyRowMapper<>(Invoice.class);
         Invoice invoice = template.queryForObject(sql, rowMapper, id);

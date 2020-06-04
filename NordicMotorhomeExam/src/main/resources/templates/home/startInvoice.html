@@ -13,50 +13,50 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container-fluid" style="text-align: center">
-    <h1 style="background-color: #eff3c6;text-align: center">Choose a reservation to create an Invoice</h1>
-   <br/>
+    <h1 style="text-align: center">Choose a reservation to create an Invoice</h1>
+    <br/>
     <br/>
     <div class="table-responsive">
-        <table class="table">
-    <thead class ="thead-dark">
-        <tr>
-            <th>Reservation ID</th>
-            <th>Customer</th>
-            <th>Motorhome ID</th>
-            <th>Call Date</th>
-            <th>Reservation Start Date</th>
-            <th>Reservation End Date</th>
-            <th>Season</th>
-            <th>Invoice ID</th>
-            <th>Price</th>
-            <th>Options</th>
+        <table class="table" style="background-color: lightblue;">
+            <thead class ="thead-dark">
+            <tr>
+                <th>Reservation ID</th>
+                <th>Customer</th>
+                <th>Motorhome ID</th>
+                <th>Call Date</th>
+                <th>Reservation Start Date</th>
+                <th>Reservation End Date</th>
+                <th>Season</th>
+                <th>Invoice ID</th>
+                <th>Price</th>
+                <th>Options</th>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="reservation: ${reservations}">
-            <td th:text="${reservation.res_id}"/>
-            <td th:text="${reservation.res_customer}"/>
-            <td th:text="${reservation.res_motorhome}"/>
-            <td th:text="${reservation.date_made}"/>
-            <td th:text="${reservation.date_reservation_start}"/>
-            <td th:text="${reservation.date_reservation_end}"/>
-            <td th:text="${reservation.season}"/>
-            <td th:text="${reservation.invoice_id}"/>
-            <td th:text="${reservation.price}"/>
-            <td>
-                <a th:href="@{'/continueInvoice/' + ${reservation.res_id}}">
-                    <button class="btn-choose">Choose Invoice</button>
-                </a>
-            </td>
-        </tr>
-    </tbody>
-</table>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation: ${reservations}">
+                <td th:text="${reservation.res_id}"/>
+                <td th:text="${reservation.res_customer}"/>
+                <td th:text="${reservation.res_motorhome}"/>
+                <td th:text="${reservation.date_made}"/>
+                <td th:text="${reservation.date_reservation_start}"/>
+                <td th:text="${reservation.date_reservation_end}"/>
+                <td th:text="${reservation.season}"/>
+                <td th:text="${reservation.invoice_id}"/>
+                <td th:text="${reservation.price}"/>
+                <td>
+                    <a th:href="@{'/continueInvoice/' + ${reservation.res_id}}">
+                        <button class="btn-choose">Choose Invoice</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
     </div>
 </div>
 <div class="container-fluid">
-<a href="/returnToMenu"><button class="btn_back">Go back</button></a>
+    <a href="/returnToMenu"><button class="btn_back">Go back</button></a>
 </div>
 </body>
 </html>

@@ -14,38 +14,43 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </table>
 <div class = "container" style="text-align: center">
-    <h1 style="background-color: #eff3c6;text-align: center">Create motorhome</h1>
+    <h1 style="text-align: center">Create motorhome</h1>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+            <br/>
+            <form action="/add_motorhome" method="post">
+                <label>Enter Reg-Num: </label>
+                <input type="text" name="reg_number" required>
+                <br/>
+                <br/>
+                <label>Enter Model: </label>
+                <input type="text" name="motor_model" required>
+                <br/>
+                <br/>
+                <label>Rent Status: </label>
+                <input type="text" name="status_rent" required  >
+                <br/>
+                <br/>
+                <label>Enter Mileage: </label>
+                <input type="number" name="mileage" required  >
+                <br/>
+                <br/>
+                <label>Enter Capacity: </label>
+                <input type="number" name="capacity" required >
+                <br/>
+                <br/>
 
-    <br/>
-<form action="/add_motorhome" method="post">
-    <label>Enter Registration Number: </label>
-    <input type="text" name="reg_number" required>
-    <br/>
-    <br/>
-    <label>Enter Motorhome Model: </label>
-    <input type="text" name="motor_model" required>
-    <br/>
-    <br/>
-    <label>Enter Rent Status: </label>
-    <input type="text" name="status_rent" required  >
-    <br/>
-    <br/>
-    <label>Enter Mileage: </label>
-    <input type="number" name="mileage" required  >
-    <br/>
-    <br/>
-    <label>Enter Capacity: </label>
-    <input type="number" name="capacity" required >
-    <br/>
-    <br/>
+                <input id = "add" type="submit" value="Add new Motorhome">
 
-    <input id = "add" type="submit" value="Add new Motorhome">
-
-</form>
-<br />
-<a href="/motorhomes">
-    <button class="btn-cancel">Cancel</button>
-</a>
+            </form>
+            <br />
+            <a href="/motorhomes">
+                <button class="btn-cancel">Cancel</button>
+            </a>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
 </div>
 </body>
 </html>

@@ -14,6 +14,9 @@
 <div class = "container" style="text-align: center">
     <h1 style="background-color: #eff3c6;text-align: center">Update reservation</h1>
     <br/>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
 
 <form action="/updateReservation" method="post">
     <label>Reservation ID: </label>
@@ -40,10 +43,6 @@
     </datalist>
     <br/>
     <br/>
-    <label>Change Price: </label>
-    <input type="text" name="price" th:value="${reservation.price}" required >
-    <br/>
-    <br/>
     <input type="submit" value="Save Changes">
 
 </form>
@@ -52,5 +51,10 @@
     <button class = "btn-cancel">Cancel</button>
 </a>
 </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
 </body>
 </html>
+
+

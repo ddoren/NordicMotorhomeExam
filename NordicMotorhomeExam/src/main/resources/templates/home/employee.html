@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
@@ -14,33 +13,28 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container">
     <br/>
-<a href="/createReservation">
-    <button class ="add">Add new Reservation</button>
-</a>
-    <br/>
-    <br/>
     <div class="table-responsive">
-        <table class="table">
-    <thead class ="thead-dark">
-    <tr>
-        <th title="Employees system number">Employee ID: </th>
-        <th>Employee Name: </th>
-        <th>Employee Email: </th>
-        <th>Employee type: </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="employee: ${employees}">
-        <td th:text="${employee.employee_id}"/>
-        <td th:text="${employee.first_name}"/>
-        <td th:text="${employee.email}"/>
-        <td th:text="${employee.type_employee}"/>
-    </tr>
-    </tbody>
-</table>
+        <table class="table" style="background-color: lightblue;">
+            <thead class ="thead-dark">
+            <tr>
+                <th title="Employees system number">Employee ID: </th>
+                <th>Employee Name: </th>
+                <th>Employee Email: </th>
+                <th>Employee type: </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="employee: ${employees}">
+                <td th:text="${employee.employee_id}"/>
+                <td th:text="${employee.first_name}"/>
+                <td th:text="${employee.email}"/>
+                <td th:text="${employee.type_employee}"/>
+            </tr>
+            </tbody>
+        </table>
     </div>
-<a href="/owner">
-    <button class="btn_back">Return</button>
-</a>
+    <a href="/owner">
+        <button class="btn_back">Return</button>
+    </a>
 </body>
 </html>

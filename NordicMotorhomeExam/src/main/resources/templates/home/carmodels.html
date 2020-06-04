@@ -14,58 +14,59 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container">
     <br/>
-<h1>Motorhome Model List</h1>
+    <h1>Motorhome Model List</h1>
     <br/>
     <div class="table-responsive">
-        <table class="table">
-    <thead>
-    <tr>
-        <th>Model ID</th>
-        <th>Model Name</th>
-        <th>Model Type</th>
-        <th>Brand</th>
-        <th>Size</th>
-        <th>Layout</th>
-        <th>Seats</th>
+        <table class="table" style="background-color: lightblue;">
+            <thead class ="thead-dark">
+            <tr>
+                <th>Model ID</th>
+                <th>Model Name</th>
+                <th>Model Type</th>
+                <th>Brand</th>
+                <th>Size</th>
+                <th>Layout</th>
+                <th>Seats</th>
+                <th>Others</th>
 
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="carmodel: ${carmodels}">
-         <td th:text="${carmodel.model_id}"/>
-         <td th:text="${carmodel.model_name}"/>
-         <td th:text="${carmodel.model_type}"/>
-         <td th:text="${carmodel.brand}"/>
-         <td th:text="${carmodel.size}"/>
-         <td th:text="${carmodel.layout}"/>
-         <td th:text="${carmodel.seats}"/>
-         <td>
-            <a th:href="@{'/delete_carmodel/'+${carmodel.model_id}}">
-                <button class="btn-delete", id="btn-delete">Delete Model</button>
-            </a>
-            <a th:href="@{'/update_carmodel/'+${carmodel.model_id}}">
-                <button class="btn-update">Update</button>
-            </a>
-        </td>
-        <td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="carmodel: ${carmodels}">
+                <td th:text="${carmodel.model_id}"/>
+                <td th:text="${carmodel.model_name}"/>
+                <td th:text="${carmodel.model_type}"/>
+                <td th:text="${carmodel.brand}"/>
+                <td th:text="${carmodel.size}"/>
+                <td th:text="${carmodel.layout}"/>
+                <td th:text="${carmodel.seats}"/>
+                <td>
+                    <a th:href="@{'/delete_carmodel/'+${carmodel.model_id}}">
+                        <button class="btn-delete", id="btn-delete">Delete Model</button>
+                    </a>
+                    <a th:href="@{'/update_carmodel/'+${carmodel.model_id}}">
+                        <button class="btn-update">Update</button>
+                    </a>
+                </td>
+                <td>
 
-        </td>
-    </tr>
+                </td>
+            </tr>
 
-    </tbody>
+            </tbody>
 
-</table>
+        </table>
     </div>
-<div>
-    <a href="/add_carmodel">
-        <button class ="add">Add new Model</button>
-    </a>
-    <br/>
-    <br/>
-    <a href="/owner">
-        <button class="btn_back">Go Back</button>
-    </a>
-</div>
+    <div>
+        <a href="/add_carmodel">
+            <button class ="add">Add new Model</button>
+        </a>
+        <br/>
+        <br/>
+        <a href="/owner">
+            <button class="btn_back">Go Back</button>
+        </a>
+    </div>
 </div>
 </body>
 </html>

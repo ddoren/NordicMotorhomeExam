@@ -12,41 +12,49 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<div class = "container" style="text-align: center">
-    <h1 style="background-color: #eff3c6;text-align: center">Add new extra</h1>
+<div class = "container " style="text-align: center">
+    <h1 style="text-align: center">Add new extra</h1>
 
-<div style="padding-bottom: 20px">
-<form action="/createExtra" method="post">
-</div>
-    <label>Enter extra ID: </label>
-    <input type="text" name="extra_id" value="1">
-    <br/>
-    <br/>
-    <label>Enter extra name: </label>
-    <input type="text" name="name_extra" required>
-    <br/>
-    <br/>
-    <label>Enter price: </label>
-    <input type="text" name="price" required  >
-    <br/>
-    <br/>
-    <label>Enter availability: </label>
-    <input type="text" name="available" required  >
-    <br/>
-    <br/>
-    <label>Enter reservation id: </label>
-    <input type="text" name="extra_reservation" >
-    <br/>
-    <br/>
+    <form  style="padding-bottom: 20px" action="/createExtra" method="post">
+        <div class="row">
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+                <br/>
+                <label>Enter extra ID: </label>
+                <input type="text" name="extra_id" value="1">
+                <br/>
+                <br/>
+                <label>Enter extra name: </label>
+                <input type="text" name="name_extra">
+                <br/>
+                <br/>
+                <label>Enter price: </label>
+                <input type="text" name="price" >
+                <br/>
+                <br/>
+                <label>Enter availability: </label>
+                <input type="text" name="available" >
+                <br/>
+                <br/>
+                <label>Enter reservation id: </label>
+                <input type="text" name="extra_reservation" >
+                <br/>
+                <br/>
+                <input id = "add" type="submit" value="Add new extra">
 
-    <input id = "add" type="submit" value="Add new extra">
+    </form>
 
-</form>
-<br />
     <br />
-<a href="/extras">
-    <button class="btn-cancel">Cancel</button>
-</a>
-</body>
+    <br />
+    <a href="/extras">
+        <button class="btn-cancel">Cancel</button>
+    </a>
+    <br/>
 </div>
+<div class="col-lg-4">
+
+</div>
+</div>
+</div>
+</body>
 </html>

@@ -13,8 +13,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container" style="text-align: center">
-    <h1 style="background-color: #eff3c6;text-align: center">Reservation Information</h1>
+    <h1 style="text-align: center">Reservation Information</h1>
     <br/>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
 <form action="/createCustomer" method="post">
     <label>Enter First Name: </label>
     <input type="text" name="first_name" required pattern="\D*">
@@ -44,7 +47,7 @@
     <input type="text" name="phone_number" required minlength="8" maxlength="8" pattern="\d*">
     <br/>
     <br/>
-    <label>Enter Bank Card Number: </label>
+    <label>Bank Card Number: </label>
     <input type="text" name="bank_card" required minlength="16" maxlength="16" pattern="\d*">
     <br/>
     <br/>
@@ -52,6 +55,12 @@
 </form>
     <br/>
     <a href="/reservations"><button class="btn-cancel">Cancel</button></a>
-</div>
+        </div>
+
+    <div class="col-lg-4"></div>
+    </div>
+    </div>
 </body>
 </html>
+
+

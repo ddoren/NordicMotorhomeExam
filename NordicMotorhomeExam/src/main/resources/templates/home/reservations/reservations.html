@@ -1,77 +1,78 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
-<title>Title</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="/secondary.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/secondary.css">
 </head>
 <body>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-    <!-- <a href="/startReservation">
-    <button class>Add new Reservation</button>
-    </a>-->
-    <div class = "container-fluid">
-        <br/>
-        <a href="/reservations/createCustomer">
-        <button class ="add" style="padding 10px 10px">Add new Reservation</button>
-        </a>
-        <br/>
-        <br/>
-        <div class="table-responsive">
-            <table class="table">
-                <thead class ="thead-dark">
-                    <tr>
-                        <th>Reservation ID</th>
-                        <th>Customer</th>
-                        <th>Customer Email</th>
-                        <th>Phone Number</th>
-                        <th>Motorhome Model</th>
-                        <th>Registration Number</th>
-                        <th>Price per day</th>
-                        <th>Reservation Start Date</th>
-                        <th>Reservation End Date</th>
-                        <th>Price for Extras</th>
-                        <th>Price</th>
-                        <th>Options</th>
+<!-- <a href="/startReservation">
+<button class>Add new Reservation</button>
+</a>-->
+<div class = "container-fluid">
+    <br/>
+    <a href="/reservations/createCustomer">
+        <button class ="add" style="padding: 10px 10px">Add new Reservation</button>
+    </a>
+    <br/>
+    <br/>
+    <div class="table-responsive">
+        <table class="table" style="background-color: lightblue;">
+            <thead class ="thead-dark">
+            <tr>
+                <th>Reservation ID</th>
+                <th>Customer</th>
+                <th>Customer Email</th>
+                <th>Phone Number</th>
+                <th>Motorhome Model</th>
+                <th>Registration Number</th>
+                <th>Price per day</th>
+                <th>Reservation Start Date</th>
+                <th>Reservation End Date</th>
+                <th>Price for Extras</th>
+                <th>Price</th>
+                <th>Options</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="reservation: ${reservations}">
-                        <td th:text="${reservation.res_id}"/>
-                        <td><span th:text="${reservation.first_name}"/> <span th:text="${reservation.last_name}"/></td>
-                        <td th:text="${reservation.email}"/>
-                        <td th:text="${reservation.phone_number}"/>
-                        <td th:text="${reservation.model_name}"/>
-                        <td th:text="${reservation.reg_number}"/>
-                        <td th:text="${reservation.price_per_day}"/>
-                        <td th:text="${reservation.date_reservation_start}"/>
-                        <td th:text="${reservation.date_reservation_end}"/>
-                        <td th:text="${reservation.price_for_extras}"/>
-                        <td th:text="${reservation.price}"/>
-                        <td>
-                        <a th:href="@{'/viewOneReservation/' + ${reservation.res_id}}">
-                           <button class ="btn-view">View</button>
-                        </a>
-                        <a th:href="@{'/updateReservation/'+${reservation.res_id}}">
-                           <button class ="btn-update">Update</button>
-                        </a>
-                        <a th:href="@{'/deleteReservation/' + ${reservation.res_id}}">
-                           <button class ="btn-delete">Delete</button>
-                        </a>
-                        <a th:href="@{'/cancelReservation/' + ${reservation.res_id}}">
-                           <button class ="btn-cancel">Cancel</button>
-                        </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reservation: ${reservations}">
+                <td th:text="${reservation.res_id}"/>
+                <td><span th:text="${reservation.first_name}"/> <span th:text="${reservation.last_name}"/></td>
+                <td th:text="${reservation.email}"/>
+                <td th:text="${reservation.phone_number}"/>
+                <td th:text="${reservation.model_name}"/>
+                <td th:text="${reservation.reg_number}"/>
+                <td th:text="${reservation.price_per_day}"/>
+                <td th:text="${reservation.date_reservation_start}"/>
+                <td th:text="${reservation.date_reservation_end}"/>
+                <td th:text="${reservation.price_for_extras}"/>
+                <td th:text="${reservation.price}"/>
+                <td>
+                    <a th:href="@{'/viewOneReservation/' + ${reservation.res_id}}">
+                        <button class ="btn-view">View</button>
+                    </a>
+                    <a th:href="@{'/updateReservation/'+${reservation.res_id}}">
+                        <button class ="btn-update">Update</button>
+                    </a>
+                    <a th:href="@{'/deleteReservation/' + ${reservation.res_id}}">
+                        <button class ="btn-delete">Delete</button>
+                    </a>
+                    <a th:href="@{'/cancelReservation/' + ${reservation.res_id}}">
+                        <button class ="btn-cancel">Cancel</button>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
         <a href="/returnToMenu"><button class="btn_back">Go back</button></a>
-        </div>
     </div>
+</div>
+
 </body>
 </html>

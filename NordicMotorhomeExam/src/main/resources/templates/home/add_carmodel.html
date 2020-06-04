@@ -13,45 +13,52 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </table>
 <div class = "container" style="text-align: center">
-    <h1 style="background-color: #eff3c6;text-align: center">Add car model</h1>
-<br/>
-<form action="/add_carmodel" method="post">
-    <label title="">Enter Model ID: </label>
-    <input type="number" name="model_id" required>
+    <h1 style="text-align: center">Add car model</h1>
     <br/>
-    <br/>
-    <label>Enter Model Name: </label>
-    <input type="text" name="model_name" required>
-    <br/>
-    <br/>
-    <label>Enter Model Type: </label>
-    <input type="text" name="model_type" required>
-    <br/>
-    <br/>
-    <label>Enter Brand: </label>
-    <input type="text" name="brand" required  >
-    <br/>
-    <br/>
-    <label title="Size should be entered with meters" >Enter Size: </label>
-    <input type="text" name="size" required  >
-    <br/>
-    <br/>
-    <label>Enter Layout: </label>
-    <input type="text" name="layout" required >
-    <br/>
-    <br/>
-    <label title="Should be a number">Enter Seats: </label>
-    <input type="text" name="seats" required >
-    <br/>
-    <br/>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+            <form action="/add_carmodel" method="post">
+                <label title="">Enter Model ID: </label>
+                <input type="number" name="model_id" required>
+                <br/>
+                <br/>
+                <label>Enter Model Name: </label>
+                <input type="text" name="model_name" required>
+                <br/>
+                <br/>
+                <label>Enter Model Type: </label>
+                <input type="text" name="model_type" required>
+                <br/>
+                <br/>
+                <label>Enter Brand: </label>
+                <input type="text" name="brand" required  >
+                <br/>
+                <br/>
+                <label title="Size should be entered with meters" >Enter Size: </label>
+                <input type="text" name="size" required  >
+                <br/>
+                <br/>
+                <label>Enter Layout: </label>
+                <input type="text" name="layout" required >
+                <br/>
+                <br/>
+                <label title="Should be a number">Enter Seats: </label>
+                <input type="text" name="seats" required >
+                <br/>
+                <br/>
 
-    <input id = "add" type="submit" value="Add new Motorhome Model">
+                <input id = "add" type="submit" value="Add new Motorhome Model">
 
-</form>
-<br />
-<a href="/carmodels">
-    <button class="btn_back">Cancel</button>
-</a>
+            </form>
+            <br />
+            <a href="/carmodels">
+                <button class="btn_back">Cancel</button>
+            </a>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+
 </div>
 </body>
 </html>

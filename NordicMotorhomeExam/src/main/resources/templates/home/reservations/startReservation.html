@@ -12,6 +12,9 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <div class = "container">
     <br/>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
 <h1>Choose Dates</h1>
 <form action="availableMotorhome?cus_id=${customer.cus_id}&date_reservation_start=${date_reservation_start}&date_reservation_end=${date_reservation_end}" method="get">
     <label>Customer ID:</label>
@@ -24,9 +27,15 @@
     <br/>
     <label>Enter Reservation Date: </label>
     <input type="date" name="date_reservation_end" required th:min="${current_date}">
+    <br/>
     <input id = "add" type="submit" value="Add new Reservation">
     <br/>
+    <br/>
 </form>
+</div>
+
+    <div class="col-lg-4"></div>
+</div>
 </div>
 </body>
 </html>
