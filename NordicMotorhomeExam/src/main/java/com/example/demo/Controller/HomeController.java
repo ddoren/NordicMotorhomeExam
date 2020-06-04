@@ -91,6 +91,8 @@ public class HomeController {
     @GetMapping("/updateReservation/{res_id}")
     public String updateReservation(@PathVariable("res_id") int res_id, Model model) {
         model.addAttribute("reservation", reservationService.findReservationById(res_id));
+        String  current_date = reservationService.getCurrentDate();
+        model.addAttribute("current_date", current_date);
         return "home/reservations/updateReservation";
     }
 
@@ -174,13 +176,17 @@ public class HomeController {
     public String finishReservation(@RequestParam(value = "pick_in_store") String pick_in_store, @RequestParam(value = "distance") int distance, @RequestParam(value = "extra_id") int extra_id, @RequestParam(value = "res_id") int res_id) {
         Reservation reservation = reservationService.findReservationById(res_id);
         int reservation_price = (int) reservation.addDropOff(pick_in_store, distance);
-        Extras extra = extrasService.findExtraByID(extra_id);
-        int extra_price = extra.getPrice();
+        int extra_price = 0;
+        if (extra_id > 0) {
+            Extras extra = extrasService.findExtraByID(extra_id);
+            extra_price = extra.getPrice();
+            reservationService.addExtraIntoReservation(res_id, extra_id);
+        }
         int total_price = reservation_price + extra_price;
         System.out.println(total_price);
         reservation.setPrice(total_price);
         reservationService.updatePrice(total_price, res_id);
-        reservationService.addExtraIntoReservation(res_id, extra_id);
+
         return "redirect:/viewOneReservation/" + res_id;
 
     }
@@ -225,7 +231,7 @@ public class HomeController {
        }
 
    //Exceptions
-    @ControllerAdvice
+   /* @ControllerAdvice
     public class controllerAdvice
     {
     @ExceptionHandler({Exception.class, SQLException.class, DataAccessException.class})
@@ -239,7 +245,8 @@ public class HomeController {
     public String errorHandling()
     {
         return "home/error2";
-    }
+    }*/
+
        //EXTRAS
     @GetMapping("/extras")
     public String extras(Model model)
@@ -422,7 +429,7 @@ public class HomeController {
         }else {
             invoice.setService("Reservation");
         }
-        total_price = invoice.getTotal_price() + invoice.getAddit_expenses();
+        total_price +=  invoice.getAddit_expenses();
         invoice.setTotal_price(total_price);
         invoiceService.addInvoice(invoice);
         int created_invoice = reservationService.getLastInsertedId();

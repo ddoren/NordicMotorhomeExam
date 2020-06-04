@@ -17,7 +17,7 @@
     <br/>
     <div class="row">
         <div class="col-lg-4"></div>
-        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right">
+        <div class="col-lg-4" style="background-color: lightblue;border-radius: 30px;text-align: right; padding: 15px;">
             <form action="/update_carmodel" method="post">
                 <label>Car model ID: </label>
                 <input type="text" name="model_id" th:value="${carmodel.model_id}" readonly >
@@ -35,7 +35,7 @@
                 <br/>
                 <br/>
                 <label>Size: </label>
-                <input type="text" name="size" th:value="${carmodel.size}" required pattern="\d*"  >
+                <input type="text" name="size" th:value="${carmodel.size}" required pattern="\d*" >
                 <br/>
                 <br/>
                 <label>Layout: </label>
@@ -46,13 +46,16 @@
                 <input type="text" name="seats" th:value="${carmodel.seats}" required pattern=pattern="^[1-9][0-9]*">
                 <br/>
                 <br/>
-                <input type="submit" value="Save Changes">
-
+                <div style="text-align:center">
+                    <input type="submit" value="Save Changes">
+                </div>
             </form>
             <br />
-            <a href="/carmodels">
-                <button class="btn-cancel">Cancel</button>
-            </a>
+            <div style="text-align:center">
+                <a href="/carmodels">
+                    <button class="btn-cancel">Cancel</button>
+                </a>
+            </div>
         </div>
         <div class="col-lg-4"></div>
     </div>
